@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text, View, Image, ScrollView } from 'react-native';
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import CustomCard from './CustomCard'
 
 const Feed = () => {
@@ -11,11 +10,13 @@ const Feed = () => {
                 {
                     items.map((i) => {
                         return (
-                            <CustomCard key={i} style={{marginTop: "2 rem"}}/>
+                            <View key={i}>
+                                <Text />
+                                <CustomCard />
+                            </View>
                         )
                     })
                 }
-
             </ScrollView>
         </View>
     )
