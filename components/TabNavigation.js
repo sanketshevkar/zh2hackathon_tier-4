@@ -2,12 +2,11 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from './components/Profile'
 
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed</Text>
+      <Text>Home!</Text>
     </View>
   );
 }
@@ -15,19 +14,19 @@ function HomeScreen() {
 function SettingsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Profile/>
+      <Text>Settings!</Text>
     </View>
   );
 }
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
+export default function TabNavigation() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Feed" component={HomeScreen} />
-        <Tab.Screen name="Profile" component={SettingsScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
