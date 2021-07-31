@@ -8,15 +8,15 @@ function CardComponent(props) {
     return (
         <Box
             bg="white"
-            shadow={4}
+            shadow={2}
             rounded="lg"
-            maxWidth="90%"
+            maxWidth="96%"
         >
-            <Image source={{ uri: "https://sample-example.nativebase.io/static/media/dawki-river.ebbf5434.png" }} alt="image base" resizeMode="cover" height={150} roundedTop="md" />
+            <Image source={{ uri: "https://i.kym-cdn.com/entries/icons/original/000/029/959/Screen_Shot_2019-06-05_at_1.26.32_PM.jpg" }} alt="image base" resizeMode="cover" height={150} roundedTop="md" />
             <Text bold position="absolute" color="white" top={2} m={[4, 4, 8]}>
                 NEWS
             </Text>
-            <Stack space={4} p={[4, 4, 8]}>
+            <Stack space={3} p={[4, 4, 8]} backgroundColor="#ffffe6">
                 <Text color="gray.400">June 22, 2021</Text>
                 <Heading size={["md", "lg", "md"]} noOfLines={2}>
                     The Stunning Dawki River in Meghalaya is So Clear That Boats Appear
