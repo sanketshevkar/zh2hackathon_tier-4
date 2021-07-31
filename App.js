@@ -3,11 +3,12 @@ import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from './components/Profile'
+import Feed from './components/Feed'
 
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed</Text>
+      <Feed/>
     </View>
   );
 }
