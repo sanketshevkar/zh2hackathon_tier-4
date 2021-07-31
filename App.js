@@ -4,11 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from './components/Profile'
 import Feed from './components/Feed'
+import {
+  NativeBaseProvider,
+} from "native-base";
 
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Feed/>
+      <Feed />
     </View>
   );
 }
@@ -16,7 +19,7 @@ function HomeScreen() {
 function SettingsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Profile/>
+      <Profile />
     </View>
   );
 }
@@ -25,11 +28,13 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Feed" component={HomeScreen} />
-        <Tab.Screen name="Profile" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Feed" component={HomeScreen} />
+          <Tab.Screen name="Profile" component={SettingsScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </NativeBaseProvider>
   );
 }
