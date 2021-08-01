@@ -16,7 +16,7 @@ function CardComponent(props) {
             <Text bold position="absolute" color="white" top={2} m={[4, 4, 8]}>
                 NEWS
             </Text>
-            <Stack space={3} p={[4, 4, 8]} backgroundColor="#ffffe6">
+            <Stack space={3} p={[4, 4, 8]} backgroundColor="#ffffff">
                 <Text color="gray.400">June 22, 2021</Text>
                 <Heading size={["md", "lg", "md"]} noOfLines={2}>
                     The Stunning Dawki River in Meghalaya is So Clear That Boats Appear
@@ -32,7 +32,7 @@ function CardComponent(props) {
     );
 }
 
-export default function CustomCard() {
+export default function FeedCard() {
     return (
         <Center flex={1}>
             <CardComponent />
