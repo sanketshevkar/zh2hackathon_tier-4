@@ -1,14 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Text, View, ScrollView } from 'react-native';
 import { Avatar, HStack, VStack } from 'native-base';
 import { Button } from 'native-base';
 import PotCard from './cards/PotCard'
 import SmallCaseCard from './cards/SmallCaseCard'
+import InvestModal from './modals/InvestModal'
 
 const Profile = () => {
-    const items = [1, 2, 3, 4]
+    const [modalVisible, setModalVisible] = useState(false)
+
+    const onPressInvest = () => {
+        setModalVisible(true)
+    }
+
     return (
         <View style={{ backgroundColor: "#ffffff" }}>
+        <InvestModal modalVisible={modalVisible} setModalVisible={setModalVisible}/>
             <ScrollView>
                 <View style={{ marginLeft: 20, marginTop: 20, backgroundColor: "#ffffff" }}>
                     <HStack>
@@ -41,9 +48,10 @@ const Profile = () => {
                 <View style={{ alignItems: 'center', marginTop: 30 }}>
                     <HStack>
                         <Button style={{ marginRight: 10 }}>+ POT</Button>
-                        <Button style={{ marginLeft: 10 }}>+ INVEST</Button>
+                        <Button style={{ marginLeft: 10 }} onPress={onPressInvest}>+ INVEST</Button>
                     </HStack>
                 </View>
+                <Text/>
                 <PotCard/>
                 <SmallCaseCard/>
                 <PotCard/>
