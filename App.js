@@ -11,7 +11,7 @@ import { Header } from 'react-native-elements';
 
 function HomeScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#ffffe6", }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#ffffff", }}>
       <Feed />
     </View>
   );
@@ -19,7 +19,7 @@ function HomeScreen() {
 
 function SettingsScreen() {
   return (
-    <View>
+    <View style={{ backgroundColor: "#ffffff" }}>
       <Profile />
     </View>
   );
@@ -38,15 +38,15 @@ export default function App() {
         // }}
         // leftComponent={{ icon: 'menu', color: '#fff', iconStyle: { color: '#fff' } }}
         centerComponent={{ text: 'Zeta Demo', style: { color: '#000000' } }}
-        backgroundColor="#ffffe6"
+        backgroundColor="#ffffff"
         barStyle="light-content"
       // rightComponent={{ icon: 'home', color: '#fff' }}
       />
-      <NavigationContainer backgroundColor="#ffffe6">
+      <NavigationContainer backgroundColor="#ffffff">
         <Tab.Navigator tabBarOptions={{
           activeTintColor: '#e91e63',
-          activeBackgroundColor: "#ffffe6",
-          inactiveBackgroundColor: "#ffffe6"
+          activeBackgroundColor: "#ffffff",
+          inactiveBackgroundColor: "#ffffff"
         }}>
           <Tab.Screen name="Feed" component={HomeScreen} />
           <Tab.Screen name="Profile" component={SettingsScreen} />

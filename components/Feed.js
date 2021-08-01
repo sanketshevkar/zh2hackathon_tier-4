@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, Image, ScrollView } from 'react-native';
-import CustomCard from './CustomCard'
+import FeedCard from  './cards/FeedCard'
 
 const Feed = () => {
     const items = [1, 2, 3, 4]
@@ -12,7 +12,7 @@ const Feed = () => {
                         return (
                             <View key={i}>
                                 <Text />
-                                <CustomCard />
+                                <FeedCard />
                             </View>
                         )
                     })
