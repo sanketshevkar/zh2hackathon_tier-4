@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from './components/Profile'
 import Feed from './components/Feed'
+import { MaterialCommunityIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
 import {
   NativeBaseProvider
 } from "native-base";
@@ -47,7 +48,23 @@ export default function App() {
           activeTintColor: '#e91e63',
           activeBackgroundColor: "#ffffff",
           inactiveBackgroundColor: "#ffffff"
-        }}>
+        }}
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            if (route.name === 'Feed') {
+              return (
+                <MaterialIcons name="dynamic-feed" size={24} color="black" />
+              );
+            } else if (route.name === 'Profile') {
+              return (
+                <MaterialIcons name="home" size={24} color="black" />
+              );
+            }
+          },
+          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: 'tomato',
+        })}
+        >
           <Tab.Screen name="Feed" component={HomeScreen} />
           <Tab.Screen name="Profile" component={SettingsScreen} />
         </Tab.Navigator>

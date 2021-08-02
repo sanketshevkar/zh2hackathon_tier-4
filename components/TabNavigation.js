@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
 
 function HomeScreen() {
   return (
@@ -25,7 +26,9 @@ export default function TabNavigation() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeScreen}>
+        <Entypo name="link" size={24} color="black" />
+        </Tab.Screen>
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
