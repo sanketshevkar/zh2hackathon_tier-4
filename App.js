@@ -9,6 +9,7 @@ import {
   NativeBaseProvider
 } from "native-base";
 import { Header } from 'react-native-elements';
+import OnboardingPage from './pages/onboarding page/OnboardingPage';
 
 function HomeScreen() {
   return (
@@ -21,7 +22,7 @@ function HomeScreen() {
 function SettingsScreen() {
   return (
     <View style={{ backgroundColor: "#ffffff" }}>
-      <Profile />
+      <OnboardingPage />
     </View>
   );
 }
