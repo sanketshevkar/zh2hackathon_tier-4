@@ -1,24 +1,25 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Text, View, ScrollView, TextInput, StyleSheet } from 'react-native';
 import { Avatar, HStack, VStack } from 'native-base';
 import { Button } from 'native-base';
 
-const OnboardingPage = () => {
+const OnboardingPage = ({navigation}) => {
     const [mobileNumber, setMobileNumber] = React.useState(" ");
     const onPressVerify = () => {
+        navigation.navigate('checkAuthScreen')
         console.log(mobileNumber);
     }
     return (
-        <View style= {{padding: 10}}>
-            <VStack>
+        <View>
+            <VStack style={{ padding: 10 }}>
                 <Text style={styles.text}>Verify your mobile number</Text>
                 <TextInput
-                style={styles.input}
-                onChangeText={setMobileNumber}
-                placeholder="Enter Mobile Number"
-              />
-              <Text style={styles.smtext}>Hint: Use number linked to your aadhar card</Text>
-              <Button style={styles.button} onPress={onPressVerify}>Verify Mobile</Button>
+                    style={styles.input}
+                    onChangeText={setMobileNumber}
+                    placeholder="Enter Mobile Number"
+                />
+                <Text style={styles.smtext}>Hint: Use number linked to your aadhar card</Text>
+                <Button style={styles.button} onPress={onPressVerify}>Verify Mobile</Button>
             </VStack>
         </View>
     )
@@ -26,11 +27,11 @@ const OnboardingPage = () => {
 
 const styles = StyleSheet.create({
     input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
-      borderRadius: 4
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 4
     },
     text: {
         padding: 10,
@@ -42,9 +43,9 @@ const styles = StyleSheet.create({
         paddingBottom: 16,
         fontSize: 12,
     },
-    button: { 
+    button: {
         backgroundColor: "black"
     }
-  });
+});
 
 export default OnboardingPage
