@@ -24,10 +24,10 @@ function HomeScreen() {
   );
 }
 
-function SettingsScreen() {
+function SettingsScreen({mobileNumber}) {
   return (
     <View style={{ backgroundColor: "#ffffff" }}>
-      <Profile />
+      <Profile mobileNumber={mobileNumber}/>
     </View>
   );
 }
@@ -36,7 +36,7 @@ export default function App() {
   const [auth, setAuth] = React.useState(false);
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
-  const [mobileNumber, setMobileNumber] = React.useState('');
+  const [mobileNumber, setMobileNumber] = React.useState('9890010090');
   const [passcode, setpasscode] = React.useState('');
   const [login, setLogin] = React.useState(false);
   React.useEffect(()=>{
@@ -116,7 +116,9 @@ export default function App() {
         })}
         >
           <Tab.Screen name="Feed" component={HomeScreen} />
-          <Tab.Screen name="Profile" component={SettingsScreen} />
+          <Tab.Screen name="Profile">
+              {props => <SettingsScreen {...props} mobileNumber={mobileNumber}/>}
+          </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
