@@ -37,7 +37,7 @@ const Profile = ({mobileNumber}) => {
     return (
         <View style={{ backgroundColor: "#ffffff" }}>
         <InvestModal investmodalVisible={investmodalVisible} setInvestModalVisible={setInvestModalVisible}/>
-        <PotModal potmodalVisible={potmodalVisible} setPotModalVisible={setPotModalVisible}/>
+        <PotModal potmodalVisible={potmodalVisible} setPotModalVisible={setPotModalVisible} mobileNumber={mobileNumber}/>
             <ScrollView>
                 <View style={{ marginLeft: 20, marginTop: 20, backgroundColor: "#ffffff" }}>
                     <HStack>
