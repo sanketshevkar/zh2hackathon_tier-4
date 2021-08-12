@@ -5,16 +5,24 @@ import { Button } from 'native-base';
 import PotCard from '../components/cards/PotCard';
 import SmallCaseCard from '../components/cards/SmallCaseCard';
 import InvestModal from '../components/modals/InvestModal';
+import PotModal from '../components/modals/PotModal';
 
 const Profile = () => {
-    const [modalVisible, setModalVisible] = useState(false)
+    const [investmodalVisible, setInvestModalVisible] = useState(false)
+    const [potmodalVisible, setPotModalVisible] = useState(false)
+
     const onPressInvest = () => {
-        setModalVisible(true)
+        setInvestModalVisible(true)
+    }
+
+    const onPressPot = () => {
+        setPotModalVisible(true)
     }
 
     return (
         <View style={{ backgroundColor: "#ffffff" }}>
-        <InvestModal modalVisible={modalVisible} setModalVisible={setModalVisible}/>
+        <InvestModal investmodalVisible={investmodalVisible} setInvestModalVisible={setInvestModalVisible}/>
+        <PotModal potmodalVisible={potmodalVisible} setPotModalVisible={setPotModalVisible}/>
             <ScrollView>
                 <View style={{ marginLeft: 20, marginTop: 20, backgroundColor: "#ffffff" }}>
                     <HStack>
@@ -46,7 +54,7 @@ const Profile = () => {
                 </View>
                 <View style={{ alignItems: 'center', marginTop: 30 }}>
                     <HStack>
-                        <Button style={{ marginRight: 10 }}>+ POT</Button>
+                        <Button style={{ marginRight: 10 }} onPress={onPressPot}>+ POT</Button>
                         <Button style={{ marginLeft: 10 }} onPress={onPressInvest}>+ INVEST</Button>
                     </HStack>
                 </View>
