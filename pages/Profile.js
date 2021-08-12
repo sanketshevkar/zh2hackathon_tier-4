@@ -11,7 +11,6 @@ const Profile = ({mobileNumber}) => {
     const [pots, setPots] = useState([]);
     useEffect(()=>{
         console.log(pots);
-
         try{
             fetch(`http://13.233.146.7:8084/pot/details/all/${mobileNumber}`, {
                 method: 'GET',
