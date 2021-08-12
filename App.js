@@ -9,6 +9,9 @@ import Profile from './pages/Profile';
 import Feed from './pages/Feed';
 import { MaterialIcons } from '@expo/vector-icons';
 import { View } from 'react-native';
+import Pin from './pages/Pin';
+import Name from './pages/Name';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,17 +33,59 @@ function SettingsScreen() {
 }
 
 export default function App() {
-  const [auth, setAuth] = React.useState(true);
-  if(auth) {
+  const [auth, setAuth] = React.useState(false);
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [mobileNumber, setMobileNumber] = React.useState('');
+  const [passcode, setpasscode] = React.useState('');
+  const [login, setLogin] = React.useState(false);
+  React.useEffect(()=>{
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('@storage_Key')
+        if(value !== null) {
+          setLogin(true);
+        }
+      } catch(e) {
+        // error reading value
+      }
+    }
+    getData();
+  }, [])
+  if(!auth && !login) {
     return(
       <NativeBaseProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="onBoadingPage">
-            <Stack.Screen name="OnBoardingPage" component={OnBoardingPage} />
+          <Stack.Navigator initialRouteName="Name">
+          <Stack.Screen name="Name">
+              {props => <Name {...props} setFirstName={setFirstName} setLastName={setLastName}/>}
+            </Stack.Screen>
+            <Stack.Screen name="OnBoardingPage">
+              {props => <OnBoardingPage {...props} setMobileNumber={setMobileNumber} />}
+            </Stack.Screen>
+            <Stack.Screen name="Pin">
+              {props => <Pin {...props} auth={auth} setAuth={setAuth} setpasscode={setpasscode} firstName={firstName} lastName={lastName} mobileNumber={mobileNumber} passcode={passcode}/>}
+            </Stack.Screen>
             {/* <Stack.Screen name="OnBoardingStatus" component={()=><OnBoardingStatus setAuth={setAuth}/>} /> */}
             <Stack.Screen name="OnBoardingStatus">
               {props => <OnBoardingStatus {...props} setAuth={setAuth} />}
             </Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </NativeBaseProvider>
+    )
+  } else if(login && !auth) {
+    return(
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Name">
+            <Stack.Screen name="Pin">
+              {props => <Pin {...props} auth={auth} login={login} setAuth={setAuth} setpasscode={setpasscode} passcode={passcode}/>}
+            </Stack.Screen>
+            {/* <Stack.Screen name="OnBoardingStatus" component={()=><OnBoardingStatus setAuth={setAuth}/>} /> */}
+            {/* <Stack.Screen name="OnBoardingStatus">
+              {props => <OnBoardingStatus {...props} setAuth={setAuth} />}
+            </Stack.Screen> */}
           </Stack.Navigator>
         </NavigationContainer>
       </NativeBaseProvider>

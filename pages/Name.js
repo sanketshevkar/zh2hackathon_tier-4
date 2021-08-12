@@ -3,20 +3,24 @@ import { Text, View, TextInput, StyleSheet } from 'react-native';
 import { VStack } from 'native-base';
 import { Button } from 'native-base';
 
-const OnBoardingPage = ({navigation, setMobileNumber}) => {
+const Name = ({navigation, setFirstName, setLastName}) => {
     const onPressVerify = () => {
-        navigation.navigate('Pin');
+        navigation.navigate('OnBoardingPage');
     }
     return (
         <View>
             <VStack style={{ padding: 10 }}>
-                <Text style={styles.text}>Verify your mobile number</Text>
+                <Text>Enter Your Name</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={setMobileNumber}
-                    placeholder="Enter Mobile Number"
+                    onChangeText={setFirstName}
+                    placeholder="Enter First Name"
                 />
-                <Text style={styles.smtext}>Use number linked to your aadhar card</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setLastName}
+                    placeholder="Enter Last Name"
+                />
                 <Button style={styles.button} onPress={onPressVerify}>Next</Button>
             </VStack>
         </View>
@@ -43,4 +47,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default OnBoardingPage
+export default Name;
