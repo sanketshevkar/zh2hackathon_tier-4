@@ -6,6 +6,17 @@ import { Entypo } from '@expo/vector-icons';
 
 const OnBoardingStatus = ({navigation, setAuth}) => {
     const testCondition = false
+
+    const onRegistrationSuccessful = () => {
+        navigation.navigate('HomePage');
+        setAuth(false)
+    }
+
+    const onRegistrationFail = () => {
+        navigation.navigate('OnBoardingPage');
+        setAuth(false)
+    }
+    
     if(testCondition) {
         return(
             <View>
@@ -13,7 +24,7 @@ const OnBoardingStatus = ({navigation, setAuth}) => {
                     <Ionicons name="checkmark-done-circle" size={150} color="green" style={{ marginTop: 150 }} />
                     <Text style={{ fontSize: 20, color: 'green' }}>Registration Successful !</Text>
                 </View>
-                <Button style={{ marginTop: 200 }} onPress={() => setAuth(false)}>Continue</Button>
+                <Button style={{ marginTop: 200 }} onPress={onRegistrationSuccessful}>Continue</Button>
             </View>
         );
     } else {
@@ -23,7 +34,7 @@ const OnBoardingStatus = ({navigation, setAuth}) => {
                     <Entypo name="circle-with-cross" size={150} color="red" style={{ marginTop: 150 }} />
                     <Text style={{ fontSize: 20, color: 'red' }}>Registration Failed !</Text>
                 </View>
-                <Button style={{ marginTop: 200 }} onPress={() => setAuth(false)}>Try Again!</Button>
+                <Button style={{ marginTop: 200 }} onPress={onRegistrationFail}>Try Again!</Button>
             </View>
         )
     }

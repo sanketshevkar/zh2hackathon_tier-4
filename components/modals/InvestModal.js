@@ -11,10 +11,10 @@ import {
 import { View } from "react-native"
 
 const InvestModal = (props) => {
-    const { modalVisible, setModalVisible } = props
+    const { investmodalVisible, setInvestModalVisible } = props
     return (
         <View>
-            <Modal isOpen={modalVisible} onClose={setModalVisible} avoidKeyboard>
+            <Modal isOpen={investmodalVisible} onClose={setInvestModalVisible} avoidKeyboard>
                 <Modal.Content>
                     <Modal.Header>Investment Form</Modal.Header>
                     <Modal.Body>
@@ -24,12 +24,12 @@ const InvestModal = (props) => {
                     <Modal.Footer>
                         <Button.Group variant="ghost" style={{paddingRight: 70}}>
                             <Button onPress={() => {
-                                setModalVisible(false)
+                                setInvestModalVisible(false)
                             }}
                             >SAVE</Button>
                             <Button
                                 onPress={() => {
-                                    setModalVisible(false)
+                                    setInvestModalVisible(false)
                                 }}
                                 colorScheme="secondary"
                             >
