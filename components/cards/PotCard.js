@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
 export default function PotCard() {
     return (
-        <Center flex={1}>
+        <Center >
             <CardComponent />
         </Center>
     );

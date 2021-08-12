@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View, ScrollView } from 'react-native';
 import { Avatar, HStack, VStack } from 'native-base';
 import { Button } from 'native-base';
@@ -7,9 +7,25 @@ import SmallCaseCard from '../components/cards/SmallCaseCard';
 import InvestModal from '../components/modals/InvestModal';
 import PotModal from '../components/modals/PotModal';
 
-const Profile = () => {
-    const [investmodalVisible, setInvestModalVisible] = useState(false)
-    const [potmodalVisible, setPotModalVisible] = useState(false)
+const Profile = ({mobileNumber}) => {
+    const [pots, setPots] = useState([]);
+    useEffect(()=>{
+        console.log(pots);
+
+        try{
+            fetch(`http://13.233.146.7:8084/pot/details/all/${mobileNumber}`, {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                }
+            }).then(res=>res.json()).then(data=>setPots(data));
+        } catch (e) {
+            console.error(e);
+        }
+    }, []);
+
+    const [investmodalVisible, setInvestModalVisible] = useState(false);
+    const [potmodalVisible, setPotModalVisible] = useState(false);
 
     const onPressInvest = () => {
         setInvestModalVisible(true)
@@ -58,12 +74,13 @@ const Profile = () => {
                         <Button style={{ marginLeft: 10 }} onPress={onPressInvest}>+ INVEST</Button>
                     </HStack>
                 </View>
-                <Text/>
-                <PotCard/>
-                <SmallCaseCard/>
-                <PotCard/>
-                <PotCard/>
-                <SmallCaseCard/>
+                {pots.map((pot, key)=>{
+                    return(
+                        <View key={key}>
+                        <PotCard pot={pot}/>
+                        </View>
+                    )
+                })}
             </ScrollView>
         </View>
     )
