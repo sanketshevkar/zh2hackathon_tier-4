@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import {
     VStack, HStack, Avatar, Image, Text, NativeBaseProvider,
-    AspectRatio, Center, Box, Stack, Heading, View, Divider, Button
+    AspectRatio, Center, Box, Stack, Heading, View, Divider, Button, useToast
 } from "native-base";
 import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons, MaterialIcons, Entypo, FontAwesome5 } from '@expo/vector-icons';
 import DetailsModal from "../modals/DetailsModal";
 
-function CardComponent({ pot }) {
+function CardComponent({ pot, users, setUsers }) {
     const [detailmodalVisible, setDetailModalVisible] = useState(false);
     const [color, setColor] = useState("green")
+
+    const toast = useToast();
 
     let imageLink = "https://assets.smallcase.com/images/smallcases/160/WRTMO_0004.png"
 
@@ -23,7 +25,7 @@ function CardComponent({ pot }) {
     useEffect(() => {
         // Update the document title using the browser API
         colorChange()
-    },[]);
+    }, []);
 
     if (pot.imageLink) {
         imageLink = pot.imageLink
@@ -33,6 +35,32 @@ function CardComponent({ pot }) {
 
     const onPressDetails = () => {
         setDetailModalVisible(true)
+    }
+
+    const onPressShare = () => {
+        const sharedCard = {
+            userID: users.length + 1,
+            name: "Sanket Shevkar",
+            userName: "sanketshevkar",
+            feed: {
+                message: "Hello folks!! I completed my goal.",
+                title: pot.title,
+                description: pot.description,
+                eta: pot.eta
+            },
+            likeCount: 0,
+            imageLink: "https://i.kym-cdn.com/entries/icons/original/000/029/959/Screen_Shot_2019-06-05_at_1.26.32_PM.jpg"
+        }
+        // UserList.push(sharedCard)
+        setUsers([
+            ...users,
+            sharedCard
+        ])
+        toast.show({
+            title: 'Post Shared!',
+            placement: 'bottom',
+            // status: 'success',
+        })
     }
 
     return (
@@ -59,7 +87,7 @@ function CardComponent({ pot }) {
                 </HStack>
             </View>
             <View style={{ alignItems: 'center', left: 100, bottom: 44 }}>
-                <Button variant="link">
+                <Button variant="link" onPress={onPressShare}>
                     <MaterialCommunityIcons name="share-all" size={24} color="black" />
                 </Button>
             </View>
@@ -84,10 +112,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function PotCard({ pot }) {
+export default function PotCard({ pot, users, setUsers }) {
     return (
         <Center >
-            <CardComponent pot={pot} />
+            <CardComponent pot={pot} users={users} setUsers={setUsers} />
         </Center>
     );
 }

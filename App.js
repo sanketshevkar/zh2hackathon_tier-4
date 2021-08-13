@@ -13,23 +13,24 @@ import Pin from './pages/Pin';
 import Name from './pages/Name';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
-import MarketPlace from './pages/MarketPlace'
+import MarketPlace from './pages/MarketPlace';
+import {UserList} from './UserList'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function HomeScreen() {
+function HomeScreen({users, setUsers}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#ffffff", }}>
-      <Feed />
+      <Feed users={users} setUsers={setUsers}/>
     </View>
   );
 }
 
-function SettingsScreen({ mobileNumber }) {
+function SettingsScreen({ mobileNumber, users, setUsers }) {
   return (
     <View style={{ backgroundColor: "#ffffff" }}>
-      <Profile mobileNumber={mobileNumber} />
+      <Profile mobileNumber={mobileNumber} users={users} setUsers={setUsers}/>
     </View>
   );
 }
@@ -46,9 +47,11 @@ export default function App() {
   const [auth, setAuth] = React.useState(false);
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
-  const [mobileNumber, setMobileNumber] = React.useState('9890010090');
+  const [mobileNumber, setMobileNumber] = React.useState('8830921498');
   const [passcode, setpasscode] = React.useState('');
   const [login, setLogin] = React.useState(false);
+  const [users,setUsers] = React.useState(UserList)
+
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -129,12 +132,14 @@ export default function App() {
               tabBarActiveTintColor: 'tomato',
             })}
           >
-            <Tab.Screen name="Feed" component={HomeScreen} />
+            <Tab.Screen name="Feed">
+            {props => <HomeScreen {...props} users={users} setUsers={setUsers}/>}
+            </Tab.Screen>
             <Tab.Screen name="Marketplace">
               {props => <MarketPlaceCollection {...props} mobileNumber={mobileNumber} />}
             </Tab.Screen>
             <Tab.Screen name="Profile">
-              {props => <SettingsScreen {...props} mobileNumber={mobileNumber} />}
+              {props => <SettingsScreen {...props} mobileNumber={mobileNumber} users={users} setUsers={setUsers}/>}
             </Tab.Screen>
           </Tab.Navigator>
         </NavigationContainer>

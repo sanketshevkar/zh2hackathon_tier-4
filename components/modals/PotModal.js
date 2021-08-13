@@ -27,7 +27,8 @@ const PotModal = (props) => {
         amount: 0,
         eta: 0,
         phoneNumber: parseInt(mobileNumber),
-        autoDeduct: true
+        autoDeduct: true,
+        imageLink: "https"
     })
 
     const [dateData, setDateData] = useState({
@@ -35,6 +36,8 @@ const PotModal = (props) => {
         selectedDate: date,
         show: false,
     })
+
+    const [toastMessage, setToastMessage] = useState("")
 
     const onPressDatePick = () => {
         setDateData({
@@ -68,7 +71,8 @@ const PotModal = (props) => {
             amount: 0,
             eta: 0,
             phoneNumber: parseInt(mobileNumber),
-            autoDeduct: true
+            autoDeduct: true,
+            imageLink: "https"
         })
 
         setDateData({
@@ -82,28 +86,45 @@ const PotModal = (props) => {
 
     const onFormSubmit = () => {
         //post request to submit form
-        // console.log(formInput)
-        fetch('http://13.233.146.7:8084/pot/create', {
+        console.log(formInput)
+        fetch('http://13.233.146.7:8084/pot/create?forcedCreate=false', {
             method: 'POST',
             headers: {
                 // 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formInput)
-        }).then((response) => {
-            console.log(response.status); toast.show({
-                title: 'Success!',
-                placement: 'bottom',
-                // status: 'success',
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const { value, days } = data;
+                if (value === false) {
+                    setToastMessage("Please increse Investment Period!");
+                } else {
+                    fetch('http://13.233.146.7:8084/pot/create?forcedCreate=true', {
+                        method: 'POST',
+                        headers: {
+                            // 'Accept': 'application/json, text/plain, */*',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formInput)
+                    }).then(response => console.log(response.status))
+                    setToastMessage("Pot Created!")
+                }
+                toast.show({
+                    title: toastMessage ,
+                    placement: 'bottom',
+                    // status: 'warning',
+                });
             })
-        }).catch((e) => {
-            console.log(e)
-            toast.show({
-                title: 'Failed!',
-                placement: 'bottom',
-                // status: 'warning',
-            });
-        })
+            .catch((e) => {
+                console.log(e)
+                toast.show({
+                    title: 'Failed!',
+                    placement: 'bottom',
+                    // status: 'warning',
+                });
+            })
         resetStates()
     }
 
@@ -166,8 +187,6 @@ const PotModal = (props) => {
                                     onChange={onDateChange}
                                 />
                             )}
-
-
                         </FormControl>
                     </Modal.Body>
                     <Modal.Footer>
