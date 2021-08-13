@@ -13,7 +13,7 @@ import {
 import { View } from "react-native"
 
 const DetailsModal = (props) => {
-    const { pot, detailmodalVisible, setDetailModalVisible } = props;
+    const { pot, detailmodalVisible, setDetailModalVisible, imageLink, color } = props;
     return (
         <View>
             <Modal isOpen={detailmodalVisible} onClose={setDetailModalVisible} avoidKeyboard>
@@ -23,9 +23,9 @@ const DetailsModal = (props) => {
                             <VStack style={{marginRight: 50}}>
                                 <Text style={{fontSize: 50}}>{pot.title}</Text>
                                 <Text style={{color: 'gray'}}>{pot.description}</Text>
-                                <Text style={{fontSize: 50, color: 'green'}}>₹{pot.amount}</Text>
+                                <Text style={{fontSize: 50, color: color}}>₹{pot.amount}</Text>
                             </VStack>
-                            <Avatar size='xl' style={{margin: 10}} source={{uri: "https://assets.smallcase.com/images/smallcases/160/WRTMO_0004.png"}}></Avatar>
+                            <Avatar size='xl' style={{margin: 10}} source={{uri: imageLink}}></Avatar>
                         </HStack>
                         <HStack marginTop={30}>
                            <VStack marginRight={120}>
