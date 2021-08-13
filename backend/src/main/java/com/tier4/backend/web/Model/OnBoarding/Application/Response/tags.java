@@ -1,0 +1,18 @@
+package com.tier4.backend.web.Model.OnBoarding.Application.Response;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class tags {
+
+    private String type;
+    private String value;
+}
