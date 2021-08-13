@@ -8,13 +8,14 @@ import {
     Center,
     NativeBaseProvider,
     HStack,
-    Avatar
+    Avatar,
+    useToast
 } from "native-base"
 import { View } from "react-native"
 
 const MarketplaceDetailsModal = (props) => {
     const { pot, detailmodalVisible, setDetailModalVisible, mobileNumber } = props;
-    let {title, description, autoDeduct, amount, imageLink} = pot;
+    let { title, description, autoDeduct, amount, imageLink } = pot;
     const reqBody = {
         title,
         description,
@@ -25,20 +26,51 @@ const MarketplaceDetailsModal = (props) => {
         imageLink
     }
 
+    const toast = useToast()
+
     const onPressBuy = () => {
         console.log(reqBody)
-        fetch('http://13.233.146.7:8084/pot/create', {
+        fetch('http://13.233.146.7:8084/pot/create?forcedCreate=false', {
             method: 'POST',
             headers: {
                 // 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(reqBody)
-        }).then((response) => {
-            console.log(response.status);
-        }).catch((e) => {
-            console.log(e)
-        })
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const { value, days } = data;
+                if (value === false) {
+                    toast.show({
+                        title: 'Pot creation failed!',
+                        placement: 'bottom',
+                        // status: 'warning',
+                    });
+                } else {
+                    fetch('http://13.233.146.7:8084/pot/create?forcedCreate=true', {
+                        method: 'POST',
+                        headers: {
+                            // 'Accept': 'application/json, text/plain, */*',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formInput)
+                    }).then(response => console.log(response.status))
+                    toast.show({
+                        title: "Pot Created!",
+                        placement: 'bottom',
+                        // status: 'warning',
+                    });
+                }
+            })
+            .catch((e) => {
+                console.log(e)
+                toast.show({
+                    title: 'Failed!',
+                    placement: 'bottom',
+                    // status: 'warning',
+                });
+            })
         setDetailModalVisible(false)
     }
 

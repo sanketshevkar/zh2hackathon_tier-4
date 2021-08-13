@@ -8,12 +8,22 @@ import {
     Center,
     NativeBaseProvider,
     HStack,
-    Avatar
+    Avatar,
+    useToast
 } from "native-base"
 import { View } from "react-native"
 
 const DetailsModal = (props) => {
     const { pot, detailmodalVisible, setDetailModalVisible, imageLink, color } = props;
+    const toast = useToast()
+    const onPressPay = () => {
+        toast.show({
+            title: "Payment Done!",
+            placement: 'bottom',
+            // status: 'warning',
+        });
+        setDetailModalVisible(false)
+    }
     return (
         <View>
             <Modal isOpen={detailmodalVisible} onClose={setDetailModalVisible} avoidKeyboard>
@@ -21,20 +31,20 @@ const DetailsModal = (props) => {
                     <Modal.Body>
                         <HStack>
                             <VStack style={{marginRight: 50}}>
-                                <Text style={{fontSize: 50}}>{pot.title}</Text>
+                                <Text style={{fontSize: 30}}>{pot.title}</Text>
                                 <Text style={{color: 'gray'}}>{pot.description}</Text>
-                                <Text style={{fontSize: 50, color: color}}>₹{pot.amount}</Text>
+                                <Text style={{fontSize: 20, color: color}}>₹{pot.amount}</Text>
                             </VStack>
                             <Avatar size='xl' style={{margin: 10}} source={{uri: imageLink}}></Avatar>
                         </HStack>
                         <HStack marginTop={30}>
-                           <VStack marginRight={120}>
+                           <VStack marginRight={50}>
                                <VStack marginBottom={30} alignItems='center'>
                                     <Text style={{fontSize: 10, color: 'gray'}}>current amt</Text>
                                     <Text style={{fontSize: 40}}>{Math.floor(pot.currentAmount)}</Text>
                                 </VStack>
                                 <VStack alignItems='center'>
-                                    <Text style={{fontSize: 10, color: 'gray'}}>ETA</Text>
+                                    <Text style={{fontSize: 10, color: 'gray'}}>Time Period (days)</Text>
                                     <Text style={{fontSize: 40}}>{pot.eta}</Text>
                                 </VStack>
                            </VStack>
@@ -51,19 +61,9 @@ const DetailsModal = (props) => {
                         </HStack>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button.Group variant="ghost" style={{paddingRight: 70}}>
-                            <Button onPress={() => {
-                                setDetailModalVisible(false)
-                            }}
-                            >DELETE</Button>
-                            <Button
-                                onPress={() => {
-                                    setDetailModalVisible(false)
-                                }}
-                                colorScheme="secondary"
-                            >
-                                EDIT
-                            </Button>
+                        <Button.Group style={{paddingRight: 110, paddingBottom: 10}}>
+                            <Button onPress={onPressPay}
+                            >Pay Now</Button>
                         </Button.Group>
                     </Modal.Footer>
                 </Modal.Content>

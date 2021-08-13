@@ -1,19 +1,96 @@
 import React, { useState } from "react";
 import {
     VStack, HStack, Avatar, Image, Text, NativeBaseProvider,
-    AspectRatio, Center, Box, Stack, Heading, Button,
+    AspectRatio, Center, Box, Stack, Heading, Button, useToast
 } from "native-base";
 import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { UserList } from "../../UserList";
+import PotCard from '../cards/PotCard'
+
 
 function CardComponent({ user }) {
-    const { likeCount, imageLink, name, userName, feed } = user
+    const { likeCount, name, userName, feed, imageUrl } = user
     const [localLikeCount, setLocalLikeCount] = useState(likeCount)
+
+    const {
+        message,
+        title,
+        description,
+        eta,
+        amount,
+        phoneNumber,
+        autoDeduct,
+        imageLink
+    } = feed
+
+    const pot = {
+        title,
+        description,
+        eta,
+        amount,
+        phoneNumber,
+        autoDeduct,
+        imageUrl,
+        currentAmount: amount
+    }
+
+
+    const toast = useToast();
 
     const onPressLike = () => {
         setLocalLikeCount(localLikeCount + 1)
+    }
+
+    const onPressBuy = () => {
+        const reqBody = {
+            title,
+            description,
+            eta,
+            amount,
+            phoneNumber,
+            autoDeduct,
+            imageLink,
+        }
+        fetch('http://13.233.146.7:8084/pot/create?forcedCreate=false', {
+            method: 'POST',
+            headers: {
+                // 'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reqBody)
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const { value, days } = data;
+                if (value === false) {
+                    toast.show({
+                        title: 'Pot creation failed! ',
+                        placement: 'bottom',
+                        // status: 'warning',
+                    });
+                } else {
+                    fetch('http://13.233.146.7:8084/pot/create?forcedCreate=true', {
+                        method: 'POST',
+                        headers: {
+                            // 'Accept': 'application/json, text/plain, */*',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formInput)
+                    }).then(response => console.log(response.status))
+                    toast.show({
+                        title: "Pot Created!",
+                        placement: 'bottom',
+                        // status: 'warning',
+                    });
+                }
+            })
+            .catch((e) => {
+                console.log(e)
+                toast.show({
+                    title: 'Failed!',
+                    placement: 'bottom',
+                    // status: 'warning',
+                });
+            })
     }
 
     return (
@@ -21,7 +98,7 @@ function CardComponent({ user }) {
             bg="white"
             shadow={2}
             rounded="lg"
-            width="96%"
+            width="95%"
         >
             <HStack>
                 <Image
@@ -37,23 +114,13 @@ function CardComponent({ user }) {
                 <Text color="#1DA1F2" style={{ marginTop: 40, marginLeft: 15, fontSize: 22 }}>{name}</Text></HStack>
             <Stack space={3} p={[4, 4, 8]} backgroundColor="#ffffff">
                 <Text color="#1DA1F2" >{"@"}{userName}</Text>
-                <Text lineHeight={[5, 5, 7]} noOfLines={[4, 4, 2]} color="gray.700">
-                    {feed.message}
-                </Text>
-                <Text lineHeight={[5, 5, 7]} noOfLines={[4, 4, 2]} color="gray.700" style={{fontWeight: "bold"}}>
-                    {"Title"} - {feed.title}
-                </Text>
-                <Text lineHeight={[5, 5, 7]} noOfLines={[4, 4, 2]} color="gray.700">
-                    {feed.description}
-                </Text>
-                <Text lineHeight={[5, 5, 7]} noOfLines={[4, 4, 2]} color="gray.700">
-                    {feed.eta}
-                </Text>
-                <Button.Group >
+                <PotCard pot={pot} />
+                <HStack>
+
                     <Button onPress={onPressLike} size="md" variant="ghost"><AntDesign name="like1" size={25} color="black" /></Button>
-                    <Button onPress={onPressLike} size="md" variant="ghost"><Ionicons name="md-add-circle-sharp" size={30} color="black" /></Button>
-                </Button.Group>
-                <Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 100 }}>{localLikeCount}{" likes"}</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 18, marginTop: 14 }}>{localLikeCount}{" likes"}</Text>
+                    <Button onPress={onPressBuy} size="md" style={{ marginLeft: 60 }}>Add Pot</Button>
+                </HStack>
             </Stack>
         </Box>
     );
