@@ -74,7 +74,7 @@ function CardComponent({ user }) {
                             // 'Accept': 'application/json, text/plain, */*',
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(formInput)
+                        body: JSON.stringify(reqBody)
                     }).then(response => console.log(response.status))
                     toast.show({
                         title: "Pot Created!",
