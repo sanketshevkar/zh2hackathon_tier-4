@@ -39,7 +39,7 @@ java -jar path/to/your/jarfile.jar fully.qualified.package.Application
 - [Video Demo](https://gist.github.com/nishanthbhat07/4ce3206f784734282ac5e817dd6366af)
 - [Website](https://thoughtful-tiger-5e817.netlify.app/)
 - [Expo Snack](https://snack.expo.dev/@sanketshevkar/github.com-sanketshevkar-zeta-demo)
-- [APK](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40gatij10/zeta-02f2a00bf2a743a39ad8fa8009d553e9-signed.apk)
+- [APK](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40gatij10/zeta-e67de90f9a3d417bb51a10dc172dfba2-signed.apk)
 - [Slideshow Doc](https://docs.google.com/presentation/d/1tJ-ixMlejhV87MCwbXpwk_QKymq2WQZkHNjBSondraQ/edit?usp=sharing)
 - [Swagger API](http://13.233.146.7:8084/swagger-ui.html#/)
 
