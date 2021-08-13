@@ -15,11 +15,11 @@ import { View } from "react-native"
 
 const MarketplaceDetailsModal = (props) => {
     const { pot, detailmodalVisible, setDetailModalVisible, mobileNumber } = props;
-    let { title, description, autoDeduct, amount, imageLink } = pot;
+    let { title, description, autoDeduct, amount, imageLink, eta } = pot;
     const reqBody = {
         title,
         description,
-        eta: 0,
+        eta,
         amount,
         phoneNumber: parseInt(mobileNumber),
         autoDeduct,
@@ -54,7 +54,7 @@ const MarketplaceDetailsModal = (props) => {
                             // 'Accept': 'application/json, text/plain, */*',
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(formInput)
+                        body: JSON.stringify(reqBody)
                     }).then(response => console.log(response.status))
                     toast.show({
                         title: "Pot Created!",
