@@ -13,17 +13,27 @@ import {
 import { View } from "react-native"
 
 const MarketplaceDetailsModal = (props) => {
-    const { pot, detailmodalVisible, setDetailModalVisible } = props;
+    const { pot, detailmodalVisible, setDetailModalVisible, mobileNumber } = props;
+    let {title, description, autoDeduct, amount, imageLink} = pot;
+    const reqBody = {
+        title,
+        description,
+        eta: 0,
+        amount,
+        phoneNumber: parseInt(mobileNumber),
+        autoDeduct,
+        imageLink
+    }
 
     const onPressBuy = () => {
-        console.log(pot)
+        console.log(reqBody)
         fetch('http://13.233.146.7:8084/pot/create', {
             method: 'POST',
             headers: {
                 // 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(pot)
+            body: JSON.stringify(reqBody)
         }).then((response) => {
             console.log(response.status);
         }).catch((e) => {

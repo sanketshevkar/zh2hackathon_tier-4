@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, ScrollView } from 'react-native';
 import MarketPlaceCard from '../components/cards/MarketPlaceCard';
 
-const MarketPlace = () => {
+const MarketPlace = ({mobileNumber}) => {
     const [marketPlacePots, setMarketPlacePots] = useState([]);
     useEffect(() => {
         console.log(marketPlacePots);
@@ -26,7 +26,7 @@ const MarketPlace = () => {
                 {marketPlacePots.map((pot, key) => {
                     return (
                         <View key={key}>
-                            <MarketPlaceCard  pot={pot} />
+                            <MarketPlaceCard  pot={pot} mobileNumber={mobileNumber}/>
                         </View>
                     )
                 })}
