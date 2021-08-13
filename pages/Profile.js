@@ -69,6 +69,7 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                 <View style={{ alignItems: 'center', marginTop: 30 }}>
                     <HStack>
                         <Button style={{ marginRight: 10 }} onPress={onPressPot}>Create POT</Button>
+                        <Button style={{ marginLeft: 10 }} onPress={onPressInvest}>Set Savings Cap</Button>
                     </HStack>
                 </View>
 

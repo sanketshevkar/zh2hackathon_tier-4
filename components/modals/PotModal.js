@@ -177,7 +177,7 @@ const PotModal = (props) => {
                                 defaultValue="0"
                             />
 
-                            <FormControl.Label mt={6}>Select Investment Period</FormControl.Label>
+                            <FormControl.Label mt={6}>Set Investment Period</FormControl.Label>
 
                             <View>
                                 <Button variant="outline" borderColor="black" onPress={onPressDatePick} title="Show time picker!"><Text>{intialFormattedDate} {" "} - {" "} {dateData.formattedDate}</Text></Button>
