@@ -99,7 +99,11 @@ const PotModal = (props) => {
                 console.log(data);
                 const { value, days } = data;
                 if (value === false) {
-                    setToastMessage("Please increse Investment Period!");
+                    toast.show({
+                        title: 'Failed!',
+                        placement: 'bottom',
+                        // status: 'warning',
+                    });
                 } else {
                     fetch('http://13.233.146.7:8084/pot/create?forcedCreate=true', {
                         method: 'POST',
@@ -109,13 +113,12 @@ const PotModal = (props) => {
                         },
                         body: JSON.stringify(formInput)
                     }).then(response => console.log(response.status))
-                    setToastMessage("Pot Created!")
+                    toast.show({
+                        title: "Pot Created!",
+                        placement: 'bottom',
+                        // status: 'warning',
+                    });
                 }
-                toast.show({
-                    title: toastMessage ,
-                    placement: 'bottom',
-                    // status: 'warning',
-                });
             })
             .catch((e) => {
                 console.log(e)
@@ -171,7 +174,7 @@ const PotModal = (props) => {
                                     amount: parseInt(value)
                                 })}
 
-                                defaultValue={formInput.amount.toString()}
+                                defaultValue="0"
                             />
 
                             <FormControl.Label mt={6}>Select Investment Period</FormControl.Label>

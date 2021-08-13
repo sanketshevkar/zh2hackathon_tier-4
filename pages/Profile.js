@@ -3,7 +3,6 @@ import { Text, View, ScrollView } from 'react-native';
 import { Avatar, HStack, VStack } from 'native-base';
 import { Button } from 'native-base';
 import PotCard from '../components/cards/PotCard';
-import SmallCaseCard from '../components/cards/SmallCaseCard';
 import InvestModal from '../components/modals/InvestModal';
 import PotModal from '../components/modals/PotModal';
 
@@ -44,16 +43,16 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                         <VStack style={{ alignItems: 'center' }}>
                             <Avatar
                                 size="2xl"
-                            // source={{
-                            //   uri: "https://pbs.twimg.com/profile_images/1309797238651060226/18cm6VhQ_400x400.jpg",
-                            // }}
+                            source={{
+                              uri: "https://upload.wikimedia.org/wikipedia/en/9/91/Ryan_Howard_%28The_Office%29.jpg",
+                            }}
                             >
                                 SS
                             </Avatar>
-                            <Text style={{ marginTop: 10, marginLeft: 8 }}>@sanketshevkar</Text>
+                            <Text style={{ marginTop: 10, marginLeft: 8 }}>@ryanhoward</Text>
                         </VStack>
                         <VStack style={{ alignItems: 'center' }}>
-                            <Text style={{ marginBottom: 20, marginTop: 20, marginLeft: 30, fontSize: 20, fontWeight: '500' }}>Sanket Shevkar</Text>
+                            <Text style={{ marginBottom: 20, marginTop: 20, marginLeft: 30, fontSize: 20, fontWeight: '500' }}>Ryan Howard</Text>
                             <HStack style={{ marginLeft: 20 }}>
                                 <VStack style={{ alignItems: 'center', marginRight: 15 }}>
                                     <Text style={{ fontWeight: '700' }}>20</Text>
@@ -69,10 +68,10 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                 </View>
                 <View style={{ alignItems: 'center', marginTop: 30 }}>
                     <HStack>
-                        <Button style={{ marginRight: 10 }} onPress={onPressPot}>+ POT</Button>
-                        <Button style={{ marginLeft: 10 }} onPress={onPressInvest}>+ INVEST</Button>
+                        <Button style={{ marginRight: 10 }} onPress={onPressPot}>Create POT</Button>
                     </HStack>
                 </View>
+
                 {pots.map((pot, key) => {
                     return (
                         <View key={key}>
