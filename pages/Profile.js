@@ -7,17 +7,17 @@ import SmallCaseCard from '../components/cards/SmallCaseCard';
 import InvestModal from '../components/modals/InvestModal';
 import PotModal from '../components/modals/PotModal';
 
-const Profile = ({mobileNumber}) => {
+const Profile = ({ mobileNumber, users, setUsers }) => {
     const [pots, setPots] = useState([]);
-    useEffect(()=>{
-        console.log(pots);
-        try{
+
+    useEffect(() => {
+        try {
             fetch(`http://13.233.146.7:8084/pot/details/all/${mobileNumber}`, {
                 method: 'GET',
                 headers: {
-                'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 }
-            }).then(res=>res.json()).then(data=>setPots(data));
+            }).then(res => res.json()).then(data => setPots(data));
         } catch (e) {
             console.error(e);
         }
@@ -36,8 +36,8 @@ const Profile = ({mobileNumber}) => {
 
     return (
         <View style={{ backgroundColor: "#ffffff" }}>
-        <InvestModal investmodalVisible={investmodalVisible} setInvestModalVisible={setInvestModalVisible}/>
-        <PotModal potmodalVisible={potmodalVisible} setPotModalVisible={setPotModalVisible} mobileNumber={mobileNumber}/>
+            <InvestModal investmodalVisible={investmodalVisible} setInvestModalVisible={setInvestModalVisible} />
+            <PotModal potmodalVisible={potmodalVisible} setPotModalVisible={setPotModalVisible} mobileNumber={mobileNumber} />
             <ScrollView>
                 <View style={{ marginLeft: 20, marginTop: 20, backgroundColor: "#ffffff" }}>
                     <HStack>
@@ -73,10 +73,10 @@ const Profile = ({mobileNumber}) => {
                         <Button style={{ marginLeft: 10 }} onPress={onPressInvest}>+ INVEST</Button>
                     </HStack>
                 </View>
-                {pots.map((pot, key)=>{
-                    return(
+                {pots.map((pot, key) => {
+                    return (
                         <View key={key}>
-                        <PotCard pot={pot}/>
+                            <PotCard pot={pot} users={users} setUsers={setUsers}/>
                         </View>
                     )
                 })}

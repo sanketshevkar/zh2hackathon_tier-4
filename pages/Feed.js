@@ -1,18 +1,22 @@
 import React from 'react'
+import { useReducer } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import FeedCard from  '../components/cards/FeedCard';
 
-const Feed = () => {
-    const items = [1, 2, 3, 4]
+const Feed = (props) => {
+    const {users, setUsers} = props
+    // setUsers({
+    //     users,
+    // })
     return (
         <View>
             <ScrollView>
                 {
-                    items.map((i) => {
+                    users.map((user) => {
                         return (
-                            <View key={i}>
+                            <View key={user.userID}>
                                 <Text />
-                                <FeedCard />
+                                <FeedCard user={user}/>
                             </View>
                         )
                     })
