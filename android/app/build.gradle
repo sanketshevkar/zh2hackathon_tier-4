@@ -137,6 +137,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -181,6 +182,15 @@ android {
 
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
+
+    packagingOptions {
+    exclude("META-INF/*.kotlin_module")
+}
+
 }
 
 dependencies {
@@ -217,5 +227,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

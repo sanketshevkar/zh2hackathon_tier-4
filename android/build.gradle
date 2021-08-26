@@ -30,6 +30,16 @@ allprojects {
             // Android JSC is installed from npm
             url("$rootDir/../node_modules/jsc-android/dist")
         }
+        maven {
+    credentials  {
+        username "bc10"
+        password "FdgoVz"
+    }
+    url 'https://apollo-sdk.zetaapps.in/repository/maven-releases/'
+    authentication {
+        basic(BasicAuthentication)
+    }
+}
 
         google()
         jcenter()
