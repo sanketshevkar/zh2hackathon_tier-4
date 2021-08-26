@@ -16,6 +16,7 @@ import { AntDesign } from '@expo/vector-icons';
 import MarketPlace from './pages/MarketPlace';
 import {UserList} from './UserList'
 
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -50,7 +51,7 @@ export default function App() {
   const [mobileNumber, setMobileNumber] = React.useState('8830921400');
   const [passcode, setpasscode] = React.useState('');
   const [login, setLogin] = React.useState(false);
-  const [users,setUsers] = React.useState(UserList)
+  const [users,setUsers] = React.useState(UserList);
 
   React.useEffect(() => {
     const getData = async () => {
