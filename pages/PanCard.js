@@ -3,23 +3,19 @@ import { Text, View, TextInput, StyleSheet } from 'react-native';
 import { VStack } from 'native-base';
 import { Button } from 'native-base';
 
-const Name = ({navigation, setFirstName, setLastName}) => {
+const PanCard = ({navigation, panCardNumber, setPanCardNumber}) => {
     const onPressVerify = () => {
-        navigation.navigate('BirthDate');
+        navigation.navigate('OnBoardingPage');
     }
+
     return (
         <View>
             <VStack style={{ padding: 10 }}>
-                <Text>Enter Your Name</Text>
+                <Text>Enter Your Pan Card Number</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={setFirstName}
+                    onChangeText={(value) => setPanCardNumber(value)}
                     placeholder="Enter First Name"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setLastName}
-                    placeholder="Enter Last Name"
                 />
                 <Button style={styles.button} onPress={onPressVerify}>Next</Button>
             </VStack>
@@ -47,4 +43,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Name;
+export default PanCard;

@@ -5,7 +5,7 @@ import { Button } from 'native-base';
 
 const OnBoardingPage = ({navigation, setMobileNumber}) => {
     const onPressVerify = () => {
-        navigation.navigate('Pin');
+        navigation.navigate('OTP');
     }
     return (
         <View>

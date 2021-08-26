@@ -14,16 +14,19 @@ import Name from './pages/Name';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import MarketPlace from './pages/MarketPlace';
-import {UserList} from './UserList'
+import { UserList } from './UserList'
+import BirthDate from './pages/BirthDate';
+import PanCard from './pages/PanCard';
+import OTPpage from './pages/OTPpage';
 
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function HomeScreen({users, setUsers}) {
+function HomeScreen({ users, setUsers }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#ffffff", }}>
-      <Feed users={users} setUsers={setUsers}/>
+      <Feed users={users} setUsers={setUsers} />
     </View>
   );
 }
@@ -31,7 +34,7 @@ function HomeScreen({users, setUsers}) {
 function SettingsScreen({ mobileNumber, users, setUsers }) {
   return (
     <View style={{ backgroundColor: "#ffffff" }}>
-      <Profile mobileNumber={mobileNumber} users={users} setUsers={setUsers}/>
+      <Profile mobileNumber={mobileNumber} users={users} setUsers={setUsers} />
     </View>
   );
 }
@@ -47,11 +50,18 @@ function MarketPlaceCollection({ mobileNumber }) {
 export default function App() {
   const [auth, setAuth] = React.useState(false);
   const [firstName, setFirstName] = React.useState('');
+  const [dob, setDob] = React.useState({
+    date: "",
+    month: "",
+    year: ""
+  });
+  const [panCardNumber, setPanCardNumber] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [mobileNumber, setMobileNumber] = React.useState('8830921400');
   const [passcode, setpasscode] = React.useState('');
   const [login, setLogin] = React.useState(false);
-  const [users,setUsers] = React.useState(UserList);
+  const [users, setUsers] = React.useState(UserList);
+  const [otp, setOtp] = React.useState("");
 
   React.useEffect(() => {
     const getData = async () => {
@@ -74,9 +84,18 @@ export default function App() {
             <Stack.Screen name="Name">
               {props => <Name {...props} setFirstName={setFirstName} setLastName={setLastName} />}
             </Stack.Screen>
+            <Stack.Screen name="BirthDate">
+              {props => <BirthDate {...props} dob={dob} setDob={setDob} />}
+            </Stack.Screen>
+            <Stack.Screen name="PanCard">
+            {props => <PanCard {...props} panCardNumber={panCardNumber} setPanCardNumber={setPanCardNumber}/>}
+          </Stack.Screen>
             <Stack.Screen name="OnBoardingPage">
               {props => <OnBoardingPage {...props} setMobileNumber={setMobileNumber} />}
             </Stack.Screen>
+            <Stack.Screen name="OTP">
+            {props => <OTPpage {...props} setMobileNumber={setMobileNumber} otp={otp} setOtp={setOtp}/>}
+          </Stack.Screen>
             <Stack.Screen name="Pin">
               {props => <Pin {...props} auth={auth} setAuth={setAuth} setpasscode={setpasscode} firstName={firstName} lastName={lastName} mobileNumber={mobileNumber} passcode={passcode} />}
             </Stack.Screen>
@@ -134,13 +153,13 @@ export default function App() {
             })}
           >
             <Tab.Screen name="Feed">
-            {props => <HomeScreen {...props} users={users} setUsers={setUsers}/>}
+              {props => <HomeScreen {...props} users={users} setUsers={setUsers} />}
             </Tab.Screen>
             <Tab.Screen name="Marketplace">
               {props => <MarketPlaceCollection {...props} mobileNumber={mobileNumber} />}
             </Tab.Screen>
             <Tab.Screen name="Profile">
-              {props => <SettingsScreen {...props} mobileNumber={mobileNumber} users={users} setUsers={setUsers}/>}
+              {props => <SettingsScreen {...props} mobileNumber={mobileNumber} users={users} setUsers={setUsers} />}
             </Tab.Screen>
           </Tab.Navigator>
         </NavigationContainer>
