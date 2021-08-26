@@ -12,6 +12,9 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 import expo.modules.splashscreen.singletons.SplashScreen;
 import expo.modules.splashscreen.SplashScreenImageResizeMode;
 
+import com.react.SmsPackage;
+
+
 
 public class MainActivity extends ReactActivity {
 
@@ -37,6 +40,16 @@ public class MainActivity extends ReactActivity {
     // SplashScreen.show(...) has to be called after super.onCreate(...)
     // Below line is handled by '@expo/configure-splash-screen' command and it's discouraged to modify it manually
   }
+
+//   @Override
+// public void onActivityResult(int requestCode, int resultCode, Intent data)
+// {
+// super.onActivityResult(requestCode, resultCode, data);
+// //probably some other stuff here
+// SendSMSPackage.getInstance().onActivityResult(requestCode, resultCode, data);
+// }
+
+
 
 
     /**
