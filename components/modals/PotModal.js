@@ -15,7 +15,7 @@ import PromptModal from './PromptModal'
 import Moment from 'moment';
 
 const PotModal = (props) => {
-    const { potmodalVisible, setPotModalVisible, mobileNumber } = props
+    const { potmodalVisible, setPotModalVisible, mobileNumber, pots, setPots } = props
     const date = new Date()
 
     const intialFormattedDate = Moment(date).format('DD/MM/YYYY');
@@ -88,6 +88,15 @@ const PotModal = (props) => {
         setPromptModal(false)
     }
 
+    const onDaysChange = (value) => {
+        const hours = parseInt(value) * 24;
+        console.log(hours)
+        setFormInput({
+            ...formInput,
+            eta: hours
+        })
+    }
+
     const onFormSubmit = () => {
         //post request to submit form
 
@@ -119,7 +128,6 @@ const PotModal = (props) => {
                     // }).then(response => console.log(response.status))
                     setPotModalVisible(false)
                     setPromptModal(true);
-
                     // toast.show({
                     //     title: "Pot Created!",
                     //     placement: 'bottom',
@@ -144,7 +152,7 @@ const PotModal = (props) => {
 
     return (
         <View>
-            <PromptModal promptModal={promptModal} setPromptModal={setPromptModal} formInput={formInput} localdays={localdays} message={message}></PromptModal>
+            <PromptModal promptModal={promptModal} setPromptModal={setPromptModal} formInput={formInput} localdays={localdays} message={message} setPots={setPots}></PromptModal>
             <Modal isOpen={potmodalVisible} onClose={setPotModalVisible} avoidKeyboard>
                 <Modal.Content>
                     <Modal.Header>Pot Form</Modal.Header>
@@ -185,19 +193,8 @@ const PotModal = (props) => {
                                 defaultValue="0"
                             />
 
-                            <FormControl.Label mt={6}>Set Investment Period</FormControl.Label>
-
-                            <View>
-                                <Button variant="outline" borderColor="black" onPress={onPressDatePick} title="Show time picker!"><Text>{intialFormattedDate} {" "} - {" "} {dateData.formattedDate}</Text></Button>
-                            </View>
-                            {dateData.show && (
-                                <DateTimePicker
-                                    testID="dateTimePicker"
-                                    value={dateData.selectedDate}
-                                    display="default"
-                                    onChange={onDateChange}
-                                />
-                            )}
+                            <FormControl.Label mt={6}>Set Investment Period (in days)</FormControl.Label>
+                            <Input onChangeText={onDaysChange} />
                         </FormControl>
                     </Modal.Body>
                     <Modal.Footer>

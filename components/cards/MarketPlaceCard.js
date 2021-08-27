@@ -7,7 +7,7 @@ import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons, MaterialIcons, Entypo, FontAwesome5 } from '@expo/vector-icons';
 import MarketplaceDetailsModal from '../modals/MarketplaceDetailsModal'
 
-const CardComponent = ({ pot, mobileNumber }) => {
+const CardComponent = ({ pot, mobileNumber, setPots }) => {
     const [detailmodalVisible, setDetailModalVisible] = useState(false);
 
     const onPressDetails = () => {
@@ -16,7 +16,7 @@ const CardComponent = ({ pot, mobileNumber }) => {
     
     return (
         <View style={styles.card}>
-            <MarketplaceDetailsModal pot={pot} detailmodalVisible={detailmodalVisible} setDetailModalVisible={setDetailModalVisible} mobileNumber={mobileNumber}/>
+            <MarketplaceDetailsModal pot={pot} detailmodalVisible={detailmodalVisible} setDetailModalVisible={setDetailModalVisible} mobileNumber={mobileNumber} setPots={setPots}/>
             <Text style={{ fontSize: 10, paddingBottom: 2, marginLeft: 15 }}>pot</Text>
             <Divider />
             <View
@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function MarketPlaceCard({ pot, mobileNumber }) {
+export default function MarketPlaceCard({ pot, mobileNumber, setPots }) {
     return (
         <Center>
-            <CardComponent pot={pot} mobileNumber={mobileNumber}/>
+            <CardComponent pot={pot} mobileNumber={mobileNumber}  setPots={setPots}/>
         </Center>
     )
 }

@@ -17,8 +17,6 @@ const DetailsModal = (props) => {
     const { pot, detailmodalVisible, setDetailModalVisible, imageLink, color, setPots } = props;
     const { id, currentAmount, amount } = pot
 
-    console.log(pot)
-
     const toast = useToast()
     const onPressPay = () => {
         fetch(`http://3.109.210.47:8085/transact/re-deduct?phoneNumber=918830921497&potId=${id}`, {

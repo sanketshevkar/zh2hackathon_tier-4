@@ -14,8 +14,9 @@ import {
 import { View } from "react-native"
 
 const MarketplaceDetailsModal = (props) => {
-    const { pot, detailmodalVisible, setDetailModalVisible, mobileNumber } = props;
+    const { pot, detailmodalVisible, setDetailModalVisible, mobileNumber, setPots } = props;
     let { title, description, autoDeduct, amount, imageLink, eta } = pot;
+
     const reqBody = {
         title,
         description,
@@ -56,7 +57,10 @@ const MarketplaceDetailsModal = (props) => {
                         },
                         body: JSON.stringify(reqBody)
                     }).then(response => {
-                        console.log(response.status)
+                        response.json()
+                    }).then((data) => {
+                        console.log(data)
+                        // setPots(data)
                         toast.show({
                             title: "Pot Created!",
                             placement: 'bottom',
