@@ -9,7 +9,6 @@
 ### Prerequisites
 1. [NodeJs](https://nodejs.org/en/download/)
 3. [React Native](https://reactnative.dev/)
-3. [Expo](https://expo.dev/)
 4. [Spring Framework](https://spring.io/projects/spring-framework)
 5. [JDK 11](https://www.oracle.com/in/java/technologies/javase-jdk11-downloads.html)
 
@@ -19,12 +18,12 @@
 
 #### Install node modules
 ```sh
-yarn
+node i
 ```
 
 #### Start Expo Server
 ```sh
-yarn start
+npm run android
 ```
 
 ### Start the backend server
@@ -38,10 +37,9 @@ java -jar path/to/your/jarfile.jar fully.qualified.package.Application
 ### Important tools/links
 - [Video Demo](https://www.youtube.com/watch?v=f8GfvRuKWfs)
 - [Website](https://thoughtful-tiger-5e817.netlify.app/)
-- [Expo Snack](https://snack.expo.dev/@sanketshevkar/github.com-sanketshevkar-zeta-demo)
 - [APK](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40gatij10/zeta-e67de90f9a3d417bb51a10dc172dfba2-signed.apk)
 - [Slideshow Doc](https://docs.google.com/presentation/d/1tJ-ixMlejhV87MCwbXpwk_QKymq2WQZkHNjBSondraQ/edit?usp=sharing)
-- [Swagger API](http://13.233.146.7:8084/swagger-ui.html#/)
+- [Swagger API](http://3.109.210.47:8085/swagger-ui.html)
 
 ---
 
