@@ -19,7 +19,7 @@ const PromptModal = (props) => {
 
     const onClickOk = () => {
         console.log(localdays)
-        if (localdays > 0) {
+
             fetch('http://3.109.210.47:8085/pot/create?forcedCreate=true', {
                 method: 'POST',
                 headers: {
@@ -33,8 +33,6 @@ const PromptModal = (props) => {
                 placement: 'bottom',
                 // status: 'warning',
             });
-        }
-
         setPromptModal(false)
     }
 
@@ -48,7 +46,7 @@ const PromptModal = (props) => {
                 <Modal.Content>
                     <Modal.Header>Warning!</Modal.Header>
                     <Modal.Body>
-                        <Text>{message}</Text>
+                        <Text>{message} days</Text>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button.Group variant="ghost" style={{ paddingRight: 70 }}>

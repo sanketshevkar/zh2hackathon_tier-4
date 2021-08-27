@@ -9,7 +9,7 @@ import PotModal from '../components/modals/PotModal';
 const Profile = ({ mobileNumber, users, setUsers }) => {
     const [pots, setPots] = useState([]);
 
-    const tempMobileNumber = mobileNumber.slice(1,13)
+    const tempMobileNumber = mobileNumber.slice(1, 13)
     console.log(tempMobileNumber)
 
     useEffect(() => {
@@ -19,8 +19,9 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 }
-            }).then(res => res.json()).then((data) => setPots(data));
-            console.log(pots)
+            }).then(res => res.json())
+                .then((data) => { 
+                    setPots(data) });
         } catch (e) {
             console.error(e);
         }
