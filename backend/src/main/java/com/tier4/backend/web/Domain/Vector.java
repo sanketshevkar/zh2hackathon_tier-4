@@ -17,19 +17,19 @@ import javax.persistence.*;
 public class Vector {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer vectorId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long vectorId;
 
-    @Column(nullable = false,name = "type",columnDefinition = "varchar(10)",updatable = true,unique = false)
+    @Column(nullable = true,name = "type",columnDefinition = "varchar(10)",updatable = true,unique = false)
     private String type;
 
-    @Column(nullable = false,name = "value",columnDefinition = "varchar(10)",updatable = true,unique = false)
+    @Column(nullable = false,name = "value",columnDefinition = "varchar(20)",updatable = true,unique = false)
     private String value;
 
 
 //    @ManyToOne
 //    @JoinColumn(name = "userId")
-    @OneToOne(mappedBy = "vector")
+    @OneToOne(fetch = FetchType.EAGER)
     private User user;
 
     private String leftOver;
@@ -37,4 +37,15 @@ public class Vector {
     private String prevAvg;
 
     private Double totalDays;
+
+    @Column(nullable = true,unique = false)
+    private int multiplier;
+
+    @Column(columnDefinition = "varchar(200)")
+    private String individualID;
+
+    @Column(columnDefinition = "varchar(200)")
+    private String accountID;
+
+    private String twilioToken;
 }

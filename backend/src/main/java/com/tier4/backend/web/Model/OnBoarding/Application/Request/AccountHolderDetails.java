@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccountHolderDetails {
 
-    private String name;
-    private String type;
+    //private String name;
+    //private String type;
     private details details;
     private String salutation;
     private String firstName;

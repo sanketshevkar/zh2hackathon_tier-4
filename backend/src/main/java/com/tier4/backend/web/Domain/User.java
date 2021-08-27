@@ -24,15 +24,14 @@ public class User {
     private String dob;
     private String lastName;
 
-    @Column(nullable = false,updatable = false,columnDefinition = "varchar(250)")
+    @Column(nullable = true,updatable = true,columnDefinition = "varchar(250)")
     private String pin;
 
     //@OneToMany(cascade = {CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REMOVE},fetch = FetchType.EAGER)
     @OneToOne(fetch = FetchType.EAGER)
     private PersonalDetails personalDetails;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Vector vector;
+    private boolean isVerified;
 
     @OneToMany
     private List<Pot> pot;

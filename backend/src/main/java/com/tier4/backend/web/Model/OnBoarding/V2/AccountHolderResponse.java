@@ -1,4 +1,4 @@
-package com.tier4.backend.web.Model.OnBoarding.Application.Request;
+package com.tier4.backend.web.Model.OnBoarding.V2;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,20 +7,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class dob {
+public class AccountHolderResponse {
 
-    @JsonProperty(namespace = "year")
-    private String year;
+    @JsonProperty(namespace = "status")
+    private String status;
 
-    @JsonProperty(namespace = "month")
-    private String month;
-
-    @JsonProperty(namespace = "day")
-    private String day;
+    @JsonProperty(namespace = "individualID")
+    private String individualID;
 
 }
