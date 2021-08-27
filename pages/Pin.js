@@ -10,9 +10,7 @@ import SmsAndroid from 'react-native-get-sms-android';
 const Pin = ({ navigation, auth, login, setAuth, setpasscode, firstName, lastName, mobileNumber, passcode }) => {
 
     const onPressVerify = () => {
-
         setAuth(true);
-
     }
 
     var filter = {

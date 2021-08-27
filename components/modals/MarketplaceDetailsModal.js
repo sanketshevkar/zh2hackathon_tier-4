@@ -21,33 +21,33 @@ const MarketplaceDetailsModal = (props) => {
         description,
         eta,
         amount,
-        phoneNumber: parseInt(mobileNumber),
+        phoneNumber: mobileNumber,
         autoDeduct,
-        imageLink
+        // imageLink
     }
 
     const toast = useToast()
 
     const onPressBuy = () => {
         console.log(reqBody)
-        fetch('http://3.109.210.47:8085/pot/create?forcedCreate=false', {
-            method: 'POST',
-            headers: {
-                // 'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(reqBody)
-        }).then(response => response.json())
-            .then(data => {
-                console.log(data);
-                const { value, days } = data;
-                if (value === false) {
-                    toast.show({
-                        title: 'Pot creation failed!',
-                        placement: 'bottom',
-                        // status: 'warning',
-                    });
-                } else {
+        // fetch('http://3.109.210.47:8085/pot/create?forcedCreate=false', {
+        //     method: 'POST',
+        //     headers: {
+        //         // 'Accept': 'application/json, text/plain, */*',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(reqBody)
+        // }).then(response => response.json())
+        //     .then(data => {
+        //         console.log(data);
+        //         const { value, days } = data;
+        //         if (value === false) {
+        //             toast.show({
+        //                 title: 'Pot creation failed!',
+        //                 placement: 'bottom',
+        //                 // status: 'warning',
+        //             });
+        //         } else {
                     fetch('http://3.109.210.47:8085/pot/create?forcedCreate=true', {
                         method: 'POST',
                         headers: {
@@ -55,22 +55,32 @@ const MarketplaceDetailsModal = (props) => {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(reqBody)
-                    }).then(response => console.log(response.status))
-                    toast.show({
-                        title: "Pot Created!",
-                        placement: 'bottom',
-                        // status: 'warning',
-                    });
-                }
-            })
-            .catch((e) => {
-                console.log(e)
-                toast.show({
-                    title: 'Failed!',
-                    placement: 'bottom',
-                    // status: 'warning',
-                });
-            })
+                    }).then(response => {
+                        console.log(response.status)
+                        toast.show({
+                            title: "Pot Created!",
+                            placement: 'bottom',
+                            // status: 'warning',
+                        });
+                    }).catch((e) => {
+                        console.log(e)
+                        toast.show({
+                            title: 'Failed!',
+                            placement: 'bottom',
+                            // status: 'warning',
+                        });
+                    })
+
+                    // }
+            //     })
+            // .catch((e) => {
+            //     console.log(e)
+            //     toast.show({
+            //         title: 'Failed!',
+            //         placement: 'bottom',
+            //         // status: 'warning',
+            //     });
+            // })
         setDetailModalVisible(false)
     }
 

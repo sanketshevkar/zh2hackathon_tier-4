@@ -54,10 +54,10 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                             >
                                 SS
                             </Avatar>
-                            <Text style={{ marginTop: 10, marginLeft: 8 }}>@ryanhoward</Text>
+                            <Text style={{ marginTop: 10, marginLeft: 8 }}>@aaryan</Text>
                         </VStack>
                         <VStack style={{ alignItems: 'center' }}>
-                            <Text style={{ marginBottom: 20, marginTop: 20, marginLeft: 30, fontSize: 20, fontWeight: '500' }}>Ryan Howard</Text>
+                            <Text style={{ marginBottom: 20, marginTop: 20, marginLeft: 30, fontSize: 20, fontWeight: '500' }}>Aaryan Srivastava</Text>
                             <HStack style={{ marginLeft: 20 }}>
                                 <VStack style={{ alignItems: 'center', marginRight: 15 }}>
                                     <Text style={{ fontWeight: '700' }}>20</Text>
@@ -81,7 +81,7 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                 {pots.map((pot, key) => {
                     return (
                         <View key={key}>
-                            <PotCard pot={pot} users={users} setUsers={setUsers} />
+                            <PotCard pot={pot} users={users} setUsers={setUsers} setPots={setPots}/>
                         </View>
                     )
                 })}

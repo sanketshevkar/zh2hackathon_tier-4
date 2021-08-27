@@ -70,6 +70,8 @@ export default function App() {
         const value = await AsyncStorage.getItem('@storage_Key')
         if (value !== null) {
           setLogin(true);
+        }else{
+          setMobileNumber(value.phoneNumber)
         }
       } catch (e) {
         // error reading value
