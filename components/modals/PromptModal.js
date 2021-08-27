@@ -12,9 +12,8 @@ import {
 } from "native-base"
 import { View } from "react-native"
 
-
 const PromptModal = (props) => {
-    const { promptModal, setPromptModal, localdays, formInput, message } = props
+    const { promptModal, setPromptModal, localdays, formInput, message, setPots } = props
     const toast = useToast();
 
     const onClickOk = () => {
@@ -27,7 +26,10 @@ const PromptModal = (props) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formInput)
-            }).then(response => console.log(response.status))
+            }).then(response => response.json())
+            .then((data) => {
+                setPots(data)
+            })
             toast.show({
                 title: "Pot Created!",
                 placement: 'bottom',

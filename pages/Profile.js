@@ -6,11 +6,8 @@ import PotCard from '../components/cards/PotCard';
 import InvestModal from '../components/modals/InvestModal';
 import PotModal from '../components/modals/PotModal';
 
-const Profile = ({ mobileNumber, users, setUsers }) => {
-    const [pots, setPots] = useState([]);
-
+const Profile = ({ mobileNumber, users, setUsers, pots, setPots }) => {
     const tempMobileNumber = mobileNumber.slice(1, 13)
-    console.log(tempMobileNumber)
 
     useEffect(() => {
         try {
@@ -20,12 +17,13 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                     'Content-Type': 'application/json',
                 }
             }).then(res => res.json())
-                .then((data) => { 
-                    setPots(data) });
+                .then((data) => {
+                    setPots(data)
+                });
         } catch (e) {
             console.error(e);
         }
-    }, []);
+    }, [pots]);
 
     const [investmodalVisible, setInvestModalVisible] = useState(false);
     const [potmodalVisible, setPotModalVisible] = useState(false);
@@ -40,8 +38,8 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
 
     return (
         <View style={{ backgroundColor: "#ffffff" }}>
-            <InvestModal investmodalVisible={investmodalVisible} setInvestModalVisible={setInvestModalVisible} />
-            <PotModal potmodalVisible={potmodalVisible} setPotModalVisible={setPotModalVisible} mobileNumber={mobileNumber} />
+            <InvestModal investmodalVisible={investmodalVisible} setInvestModalVisible={setInvestModalVisible} mobileNumber={mobileNumber} />
+            <PotModal potmodalVisible={potmodalVisible} setPotModalVisible={setPotModalVisible} mobileNumber={mobileNumber} setPots={setPots} />
             <ScrollView>
                 <View style={{ marginLeft: 20, marginTop: 20, backgroundColor: "#ffffff" }}>
                     <HStack>
@@ -74,14 +72,14 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                 <View style={{ alignItems: 'center', marginTop: 30 }}>
                     <HStack>
                         <Button style={{ marginRight: 10 }} onPress={onPressPot}>Create POT</Button>
-                        <Button style={{ marginLeft: 10 }} onPress={onPressInvest}>Set Savings Cap</Button>
+                        <Button style={{ marginLeft: 10 }} onPress={onPressInvest}>Multiplier</Button>
                     </HStack>
                 </View>
 
                 {pots.map((pot, key) => {
                     return (
                         <View key={key}>
-                            <PotCard pot={pot} users={users} setUsers={setUsers} setPots={setPots}/>
+                            <PotCard pot={pot} users={users} setUsers={setUsers} setPots={setPots} />
                         </View>
                     )
                 })}

@@ -4,7 +4,7 @@ import { Text, View, ScrollView } from 'react-native';
 import FeedCard from  '../components/cards/FeedCard';
 
 const Feed = (props) => {
-    const {users, setUsers} = props
+    const {users, setUsers, mobileNumber} = props
     // setUsers({
     //     users,
     // })
@@ -16,7 +16,7 @@ const Feed = (props) => {
                         return (
                             <View key={user.userID}>
                                 <Text />
-                                <FeedCard user={user}/>
+                                <FeedCard user={user} mobileNumber={mobileNumber}/>
                             </View>
                         )
                     })

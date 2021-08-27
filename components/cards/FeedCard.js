@@ -7,7 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 import PotCard from '../cards/PotCard'
 
 
-function CardComponent({ user }) {
+function CardComponent({ user, mobileNumber }) {
     const { likeCount, name, userName, feed, imageUrl } = user
     const [localLikeCount, setLocalLikeCount] = useState(likeCount)
 
@@ -34,6 +34,7 @@ function CardComponent({ user }) {
     }
 
 
+
     const toast = useToast();
 
     const onPressLike = () => {
@@ -41,108 +42,44 @@ function CardComponent({ user }) {
     }
 
     const onPressBuy = () => {
+
         const reqBody = {
             title,
             description,
             eta,
             amount,
-            phoneNumber,
+            phoneNumber: mobileNumber,
             autoDeduct,
             // imageLink,
         }
-        // fetch('http://3.109.210.47:8085/pot/create?forcedCreate=false', {
-        //     method: 'POST',
-        //     headers: {
-        //         // 'Accept': 'application/json, text/plain, */*',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(reqBody)
-        // }).then(response => response.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         const { value, days } = data;
-        //         if (value === false) {
-        //             toast.show({
-        //                 title: 'Pot creation failed! ',
-        //                 placement: 'bottom',
-        //                 // status: 'warning',
-        //             });
-        //         } else {
-        //             fetch('http://3.109.210.47:8085/pot/create?forcedCreate=true', {
-        //                 method: 'POST',
-        //                 headers: {
-        //                     // 'Accept': 'application/json, text/plain, */*',
-        //                     'Content-Type': 'application/json'
-        //                 },
-        //                 body: JSON.stringify(reqBody)
-        //             }).then(response => console.log(response.status))
-        //             toast.show({
-        //                 title: "Pot Created!",
-        //                 placement: 'bottom',
-        //                 // status: 'warning',
-        //             });
-        //         }
-        //     })
-        //     .catch((e) => {
-        //         console.log(e)
-        //         toast.show({
-        //             title: 'Failed!',
-        //             placement: 'bottom',
-        //             // status: 'warning',
-        //         });
-        //     })
 
-        // fetch('http://3.109.210.47:8085/pot/create?forcedCreate=false', {
-        //     method: 'POST',
-        //     headers: {
-        //         // 'Accept': 'application/json, text/plain, */*',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(reqBody)
-        // }).then(response => response.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         const { value, days } = data;
-        //         if (value === false) {
-        //             toast.show({
-        //                 title: 'Pot creation failed!',
-        //                 placement: 'bottom',
-        //                 // status: 'warning',
-        //             });
-        //         } else {
-            fetch('http://3.109.210.47:8085/pot/create?forcedCreate=true', {
-                method: 'POST',
-                headers: {
-                    // 'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(reqBody)
-            }).then(response => {
-                console.log(response.status)
-                toast.show({
-                    title: "Pot Created!",
-                    placement: 'bottom',
-                    // status: 'warning',
-                });
-            }).catch((e) => {
-                console.log(e)
-                toast.show({
-                    title: 'Failed!',
-                    placement: 'bottom',
-                    // status: 'warning',
-                });
-            })
+        console.log(reqBody, 'Line 56')
 
-            // }
-    //     })
-    // .catch((e) => {
-    //     console.log(e)
-    //     toast.show({
-    //         title: 'Failed!',
-    //         placement: 'bottom',
-    //         // status: 'warning',
-    //     });
-    // })
+        fetch('http://3.109.210.47:8085/pot/create?forcedCreate=true', {
+            method: 'POST',
+            headers: {
+                // 'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reqBody)
+        }).then(response => {
+            response.json()
+        }).then((data) => {
+            console.log(data, 'Line 69')
+            // setPots(data)
+            toast.show({
+                title: "Pot Created!",
+                placement: 'bottom',
+                // status: 'warning',
+            });
+        }).catch((e) => {
+            console.log(e)
+            toast.show({
+                title: 'Failed!',
+                placement: 'bottom',
+                // status: 'warning',
+            });
+        })
     }
 
     return (
@@ -178,10 +115,10 @@ function CardComponent({ user }) {
     );
 }
 
-export default function FeedCard({ user }) {
+export default function FeedCard({ user, mobileNumber }) {
     return (
         <Center flex={1}>
-            <CardComponent user={user} />
+            <CardComponent user={user} mobileNumber={mobileNumber} />
         </Center>
     );
 }
