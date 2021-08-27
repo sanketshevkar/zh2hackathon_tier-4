@@ -12,6 +12,10 @@
 4. [Spring Framework](https://spring.io/projects/spring-framework)
 5. [JDK 11](https://www.oracle.com/in/java/technologies/javase-jdk11-downloads.html)
 
+---
+### Zeta API's Used
+![logo](https://hackrx.s3.ap-south-1.amazonaws.com/API_USES.png)
+
 
 ---
 ### Local Dev Setup
@@ -35,7 +39,7 @@ java -jar path/to/your/jarfile.jar fully.qualified.package.Application
 
 ---
 ### Important tools/links
-- [Video Demo](https://www.youtube.com/watch?v=f8GfvRuKWfs)
+- [Video Demo](https://www.youtube.com/watch?v=Sa5z88HsObs)
 - [Website](https://thoughtful-tiger-5e817.netlify.app/)
 - [APK](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40gatij10/zeta-e67de90f9a3d417bb51a10dc172dfba2-signed.apk)
 - [Slideshow Doc](https://docs.google.com/presentation/d/1tJ-ixMlejhV87MCwbXpwk_QKymq2WQZkHNjBSondraQ/edit?usp=sharing)
