@@ -28,7 +28,7 @@ export let UserList = [
             amount: 5000,
             phoneNumber: 8830921498,
             autoDeduct: true,
-            imageLink: "https://roost.nbcuni.com/bin/viewasset.html/content/dam/Peacock/Campaign/landingpages/library/theoffice/characterbios/office-character-dwight-min.png/_jcr_content/renditions/original"
+            imageLink: "https://yourmoneywise.in/wp-content/uploads/2020/07/savemoney.png"
         },
         likeCount: 0,
         imageUrl: "https://yourmoneywise.in/wp-content/uploads/2020/07/savemoney.png"
@@ -45,7 +45,7 @@ export let UserList = [
             amount: 20000,
             phoneNumber: 8830921498,
             autoDeduct: true,
-            imageLink: "https://roost.nbcuni.com/bin/viewasset.html/content/dam/Peacock/Campaign/landingpages/library/theoffice/characterbios/office-character-pam-min.png/_jcr_content/renditions/original?downsize=1200:*&output-quality=70"
+            imageLink: "https://yourmoneywise.in/wp-content/uploads/2020/07/savemoney.png"
         },
         likeCount: 0,
         imageUrl: "https://yourmoneywise.in/wp-content/uploads/2020/07/savemoney.png"
@@ -79,7 +79,7 @@ export let UserList = [
             amount: 3000,
             phoneNumber: 8830921498,
             autoDeduct: true,
-            imageLink: "https://roost.nbcuni.com/bin/viewasset.html/content/dam/Peacock/Campaign/landingpages/library/theoffice/characterbios/office-character-angela-min.png/_jcr_content/renditions/original?downsize=1200:*&output-quality=70"
+            imageLink: "https://yourmoneywise.in/wp-content/uploads/2020/07/savemoney.png"
         },
         likeCount: 0,
         imageUrl: "https://yourmoneywise.in/wp-content/uploads/2020/07/savemoney.png"

@@ -11,6 +11,7 @@ import {
 import { View, Text } from "react-native"
 import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import PromptModal from './PromptModal'
 import Moment from 'moment';
 
 const PotModal = (props) => {
@@ -26,9 +27,8 @@ const PotModal = (props) => {
         description: "",
         amount: 0,
         eta: 0,
-        phoneNumber: parseInt(mobileNumber),
+        phoneNumber: mobileNumber,
         autoDeduct: true,
-        imageLink: "https"
     })
 
     const [dateData, setDateData] = useState({
@@ -37,7 +37,11 @@ const PotModal = (props) => {
         show: false,
     })
 
-    const [toastMessage, setToastMessage] = useState("")
+    const [promptModal, setPromptModal] = useState(false)
+
+    const [localdays, setLocalDays] = useState(0)
+
+    const [message, setMessage] = useState("")
 
     const onPressDatePick = () => {
         setDateData({
@@ -60,7 +64,7 @@ const PotModal = (props) => {
 
         setFormInput({
             ...formInput,
-            eta: timPeriodInHours
+            eta: Math.abs(timPeriodInHours)
         })
     }
 
@@ -70,9 +74,8 @@ const PotModal = (props) => {
             description: "",
             amount: 0,
             eta: 0,
-            phoneNumber: parseInt(mobileNumber),
+            phoneNumber: mobileNumber,
             autoDeduct: true,
-            imageLink: "https"
         })
 
         setDateData({
@@ -82,42 +85,46 @@ const PotModal = (props) => {
         })
 
         setPotModalVisible(false)
+        setPromptModal(false)
     }
 
     const onFormSubmit = () => {
         //post request to submit form
-        console.log(formInput)
-        fetch('http://13.233.146.7:8084/pot/create?forcedCreate=false', {
+
+        fetch('http://3.109.210.47:8085/pot/create?forcedCreate=false', {
             method: 'POST',
             headers: {
                 // 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
+
             body: JSON.stringify(formInput)
         }).then(response => response.json())
-            .then(data => {
+            .then((data) => {
                 console.log(data);
                 const { value, days } = data;
                 if (value === false) {
-                    toast.show({
-                        title: 'Failed!',
-                        placement: 'bottom',
-                        // status: 'warning',
-                    });
+                    setMessage("Not possible, increase number of days!")
+                    setPromptModal(true);
+                    setLocalDays(days);
                 } else {
-                    fetch('http://13.233.146.7:8084/pot/create?forcedCreate=true', {
-                        method: 'POST',
-                        headers: {
-                            // 'Accept': 'application/json, text/plain, */*',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formInput)
-                    }).then(response => console.log(response.status))
-                    toast.show({
-                        title: "Pot Created!",
-                        placement: 'bottom',
-                        // status: 'warning',
-                    });
+                    setMessage(`Do you want to exceed the limit by ${days}`)
+                    // fetch('http://3.109.210.47:8085/pot/create?forcedCreate=true', {
+                    //     method: 'POST',
+                    //     headers: {
+                    //         // 'Accept': 'application/json, text/plain, */*',
+                    //         'Content-Type': 'application/json'
+                    //     },
+                    //     body: JSON.stringify(formInput)
+                    // }).then(response => console.log(response.status))
+                    setPotModalVisible(false)
+                    setPromptModal(true);
+
+                    // toast.show({
+                    //     title: "Pot Created!",
+                    //     placement: 'bottom',
+                    //     // status: 'warning',
+                    // });
                 }
             })
             .catch((e) => {
@@ -128,7 +135,7 @@ const PotModal = (props) => {
                     // status: 'warning',
                 });
             })
-        resetStates()
+        // resetStates()
     }
 
     const onFormClose = () => {
@@ -137,6 +144,7 @@ const PotModal = (props) => {
 
     return (
         <View>
+            <PromptModal promptModal={promptModal} setPromptModal={setPromptModal} formInput={formInput} localdays={localdays} message={message}></PromptModal>
             <Modal isOpen={potmodalVisible} onClose={setPotModalVisible} avoidKeyboard>
                 <Modal.Content>
                     <Modal.Header>Pot Form</Modal.Header>

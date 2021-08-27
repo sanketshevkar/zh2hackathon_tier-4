@@ -57,10 +57,11 @@ export default function App() {
   });
   const [panCardNumber, setPanCardNumber] = React.useState('');
   const [lastName, setLastName] = React.useState('');
-  const [mobileNumber, setMobileNumber] = React.useState('8830921400');
+  const [mobileNumber, setMobileNumber] = React.useState('+918830921497');
   const [passcode, setpasscode] = React.useState('');
   const [login, setLogin] = React.useState(false);
   const [users, setUsers] = React.useState(UserList);
+  const [resOtp, setResOtp] = React.useState("")
   const [otp, setOtp] = React.useState("");
 
   React.useEffect(() => {
@@ -91,10 +92,10 @@ export default function App() {
             {props => <PanCard {...props} panCardNumber={panCardNumber} setPanCardNumber={setPanCardNumber}/>}
           </Stack.Screen>
             <Stack.Screen name="OnBoardingPage">
-              {props => <OnBoardingPage {...props} setMobileNumber={setMobileNumber} />}
+              {props => <OnBoardingPage {...props} setMobileNumber={setMobileNumber} mobileNumber={mobileNumber} firstName={firstName} lastName={lastName} panCardNumber={panCardNumber} dob={dob} setResOtp={setResOtp}/>}
             </Stack.Screen>
             <Stack.Screen name="OTP">
-            {props => <OTPpage {...props} setMobileNumber={setMobileNumber} otp={otp} setOtp={setOtp}/>}
+            {props => <OTPpage {...props} setMobileNumber={setMobileNumber} otp={otp} setOtp={setOtp} resOtp={resOtp}/>}
           </Stack.Screen>
             <Stack.Screen name="Pin">
               {props => <Pin {...props} auth={auth} setAuth={setAuth} setpasscode={setpasscode} firstName={firstName} lastName={lastName} mobileNumber={mobileNumber} passcode={passcode} />}

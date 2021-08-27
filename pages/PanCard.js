@@ -15,7 +15,7 @@ const PanCard = ({navigation, panCardNumber, setPanCardNumber}) => {
                 <TextInput
                     style={styles.input}
                     onChangeText={(value) => setPanCardNumber(value)}
-                    placeholder="Enter First Name"
+                    placeholder="Enter Pan Card Number"
                 />
                 <Button style={styles.button} onPress={onPressVerify}>Next</Button>
             </VStack>

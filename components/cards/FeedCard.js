@@ -50,7 +50,7 @@ function CardComponent({ user }) {
             autoDeduct,
             imageLink,
         }
-        fetch('http://13.233.146.7:8084/pot/create?forcedCreate=false', {
+        fetch('http://3.109.210.47:8085/pot/create?forcedCreate=false', {
             method: 'POST',
             headers: {
                 // 'Accept': 'application/json, text/plain, */*',
@@ -68,7 +68,7 @@ function CardComponent({ user }) {
                         // status: 'warning',
                     });
                 } else {
-                    fetch('http://13.233.146.7:8084/pot/create?forcedCreate=true', {
+                    fetch('http://3.109.210.47:8085/pot/create?forcedCreate=true', {
                         method: 'POST',
                         headers: {
                             // 'Accept': 'application/json, text/plain, */*',
