@@ -1,4 +1,4 @@
-package com.tier4.backend.web.Model.OnBoarding;
+package com.tier4.backend.web.Model.OnBoarding.V2;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -6,15 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class VectorsDto {
+public class Accounts {
 
-    private String type = "p";
-    private String value;
+    private String id;
 
-    private static final boolean isVerified = true;
 }

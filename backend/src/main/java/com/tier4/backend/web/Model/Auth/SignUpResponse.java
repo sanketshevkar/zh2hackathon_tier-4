@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class UserLoginReponse {
+public class SignUpResponse {
 
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-
+    private String pin;
 }

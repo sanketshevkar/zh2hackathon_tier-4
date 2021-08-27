@@ -30,7 +30,6 @@ public class PotController {
             return new ResponseEntity(message,HttpStatus.OK) ;
         }
         else{
-
             return new ResponseEntity(potService.createPot(potDto),HttpStatus.OK);
         }
 
@@ -52,7 +51,7 @@ public class PotController {
     @GetMapping("/details/all/{phoneNumber}")
     public ResponseEntity<List<PotDto>> getAllUserPotDetails(@PathVariable String phoneNumber){
 
-        return new ResponseEntity(potService.getAllPots(phoneNumber),HttpStatus.OK);
+        return new ResponseEntity(potService.getAllPots("+"+phoneNumber),HttpStatus.OK);
     }
 
     @GetMapping("/details/{potId}")
