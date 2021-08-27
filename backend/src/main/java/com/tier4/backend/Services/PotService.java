@@ -46,8 +46,11 @@ public class PotService {
     @Transactional
     public List<PotDto> createPot(PotDto potDto) {
 
+        log.info("Inside createPot function");
+
         Vector vector = vectorRepo.getByValue(potDto.getPhoneNumber());
 
+        log.info("VECTOR @POT :"+vector.toString());
         User user = vector.getUser();
 
         if(user.getPot() == null){

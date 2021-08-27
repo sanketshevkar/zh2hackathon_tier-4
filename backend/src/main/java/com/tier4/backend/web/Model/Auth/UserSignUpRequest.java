@@ -19,6 +19,11 @@ public class UserSignUpRequest {
     private String type;
     private String phoneNumber;
     private String pin;
+    private String pan;
+    private String year;
+    private String month;
+    private String date;
+    private static final String ifiID = "140793";
 
 
 }

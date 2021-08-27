@@ -15,10 +15,9 @@ import java.util.stream.Collectors;
 public class Converter {
 
 
-    public  Vector vectorDtoToEntity(VectorsDto vectorsDto){
+    public Vector vectorDtoToEntity(VectorsDto vectorsDto){
 
         return Vector.builder()
-                .type(vectorsDto.getType())
                 .value(vectorsDto.getValue()).build();
     }
 

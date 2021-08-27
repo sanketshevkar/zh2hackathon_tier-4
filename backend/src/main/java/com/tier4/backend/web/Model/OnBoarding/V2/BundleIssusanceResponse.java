@@ -1,4 +1,5 @@
-package com.tier4.backend.web.Model.Auth;
+package com.tier4.backend.web.Model.OnBoarding.V2;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class UserLoginReponse {
+public class BundleIssusanceResponse {
 
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
+    private AccountProducts accountProducts;
 
 }
