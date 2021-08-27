@@ -8,23 +8,12 @@ import SmsRetriever from 'react-native-sms-retriever';
 import SmsAndroid from 'react-native-get-sms-android';
 
 const Pin = ({ navigation, auth, login, setAuth, setpasscode, firstName, lastName, mobileNumber, passcode }) => {
-    const onPressVerify = () => {
-        setAuth(true);
-    }
 
-    // const onSmsListenerPressed = async () => {
-    //     try {
-    //       const registered = await SmsRetriever.startSmsRetriever();
-    //       if (registered) {
-    //         SmsRetriever.addSmsListener(event => {
-    //           console.log(event.message, 'Line 73 app.js');
-    //           // SmsRetriever.removeSmsListener();
-    //         }); 
-    //       }
-    //     } catch (error) {
-    //       console.log(JSON.stringify(error));
-    //     }
-    //   };
+    const onPressVerify = () => {
+
+        setAuth(true);
+
+    }
 
     var filter = {
         box: 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
@@ -38,7 +27,7 @@ const Pin = ({ navigation, auth, login, setAuth, setpasscode, firstName, lastNam
          *    - Same for minDate but with "date >= minDate"
          */
         minDate: 0, // timestamp (in milliseconds since UNIX epoch)
-        maxDate: 1729969784590 , // timestamp (in milliseconds since UNIX epoch)
+        maxDate: 1729969784590, // timestamp (in milliseconds since UNIX epoch)
         bodyRegex: '(.*)How are you(.*)', // content regex to match
 
         /** the next 5 filters should NOT be used together, they are OR-ed so pick one **/
@@ -75,6 +64,9 @@ const Pin = ({ navigation, auth, login, setAuth, setpasscode, firstName, lastNam
             //     }
             // });
             setAuth(true);
+            const jsonValue = JSON.stringify({ phoneNumber: mobileNumber, pin: passcode })
+            AsyncStorage.setItem('@storage_Key', jsonValue)
+
             // SmsAndroid.list(
             //     JSON.stringify(filter),
             //     (fail) => {
