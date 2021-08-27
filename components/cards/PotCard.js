@@ -7,9 +7,11 @@ import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons, MaterialIcons, Entypo, FontAwesome5 } from '@expo/vector-icons';
 import DetailsModal from "../modals/DetailsModal";
 
-function CardComponent({ pot, users, setUsers }) {
+function CardComponent({ pot, users, setUsers, setPots }) {
     const [detailmodalVisible, setDetailModalVisible] = useState(false);
     const [color, setColor] = useState("green")
+
+    const {amount, currentAmount} = pot
 
     const toast = useToast();
 
@@ -65,7 +67,7 @@ function CardComponent({ pot, users, setUsers }) {
 
     return (
         <View style={styles.card}>
-            <DetailsModal pot={pot} detailmodalVisible={detailmodalVisible} setDetailModalVisible={setDetailModalVisible} color={color} imageLink={imageLink} />
+            <DetailsModal pot={pot} detailmodalVisible={detailmodalVisible} setDetailModalVisible={setDetailModalVisible} color={color} imageLink={imageLink} setPots={setPots}/>
             <Text style={{ fontSize: 10, paddingBottom: 2, marginLeft: 15 }}>pot</Text>
             <Divider />
             <View
@@ -75,7 +77,14 @@ function CardComponent({ pot, users, setUsers }) {
                 <Text style={{ fontSize: 20 }}>{pot.title}</Text>
                 <HStack>
                     <FontAwesome5 style={{ paddingTop: 10 }} name="fill" size={10} color="black" />
-                    <Text style={{ fontSize: 24, paddingTop: 2, marginLeft: 5, color: color }}>{Math.floor((pot.currentAmount / pot.amount) * 100)}%</Text>
+                    {
+                        currentAmount === -1 ? (
+                            <Text style={{ fontSize: 24, paddingTop: 2, marginLeft: 5, color: "green" }}>100 %</Text>
+                        ) : (
+                            <Text style={{ fontSize: 24, paddingTop: 2, marginLeft: 5, color: color }}>{Math.floor((pot.currentAmount / pot.amount) * 100)}%</Text>
+                        )
+                    }
+                   
                 </HStack>
             </View>
             <Divider />
