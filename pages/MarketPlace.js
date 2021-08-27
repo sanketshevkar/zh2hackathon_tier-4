@@ -7,7 +7,7 @@ const MarketPlace = ({mobileNumber}) => {
     useEffect(() => {
         console.log(marketPlacePots);
         try {
-            fetch(`http://13.233.146.7:8084/pot/marketPlace`, {
+            fetch(`http://3.109.210.47:8085/pot/marketPlace`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

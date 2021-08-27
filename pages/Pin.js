@@ -12,8 +12,6 @@ const Pin = ({ navigation, auth, login, setAuth, setpasscode, firstName, lastNam
         setAuth(true);
     }
 
-    const moment = new Date()
-
     // const onSmsListenerPressed = async () => {
     //     try {
     //       const registered = await SmsRetriever.startSmsRetriever();
@@ -77,23 +75,23 @@ const Pin = ({ navigation, auth, login, setAuth, setpasscode, firstName, lastNam
             //     }
             // });
             setAuth(true);
-            SmsAndroid.list(
-                JSON.stringify(filter),
-                (fail) => {
-                    console.log('Failed with this error: ' + fail);
-                },
-                (count, smsList) => {
-                    console.log('Count: ', count);
-                    console.log('List: ', smsList);
-                    var arr = JSON.parse(smsList);
+            // SmsAndroid.list(
+            //     JSON.stringify(filter),
+            //     (fail) => {
+            //         console.log('Failed with this error: ' + fail);
+            //     },
+            //     (count, smsList) => {
+            //         console.log('Count: ', count);
+            //         console.log('List: ', smsList);
+            //         var arr = JSON.parse(smsList);
 
-                    arr.forEach(function (object) {
-                        // console.log('Object: ' + object);
-                        console.log('-->' + object.date);
-                        console.log('-->' + object.body);
-                    });
-                },
-            );
+            //         arr.forEach(function (object) {
+            //             // console.log('Object: ' + object);
+            //             console.log('-->' + object.date);
+            //             console.log('-->' + object.body);
+            //         });
+            //     },
+            // );
 
         } catch (e) {
             console.error(e);

@@ -7,11 +7,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import SmsRetriever from 'react-native-sms-retriever';
 import SmsAndroid from 'react-native-get-sms-android';
 
-const OTPpage = ({ navigation, login, setpasscode, firstName, lastName, mobileNumber, passcode, otp, setOtp }) => {
-    const onPressVerify = () => {
-        navigation.navigate('Pin');
-    }
+const OTPpage = ({ navigation, login, setpasscode, firstName, lastName, mobileNumber, passcode, otp, setOtp, resOtp }) => {
+    
+    const [error, setError] = React.useState("")
 
+    const onPressVerify = () => {
+        // if(resOtp !== otp){
+        //     setError("Wrong Otp!!")
+        // }else{
+            navigation.navigate('Pin');
+        // }
+    }
 
     return (
         <View>
@@ -30,6 +36,10 @@ const OTPpage = ({ navigation, login, setpasscode, firstName, lastName, mobileNu
                 />
 
                 <Button style={styles.button} onPress={onPressVerify}>Finish</Button>
+
+
+                <Text>{error}</Text>
+
             </VStack>
         </View>
     )

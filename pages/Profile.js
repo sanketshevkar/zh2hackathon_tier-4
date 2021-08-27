@@ -11,7 +11,7 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
 
     useEffect(() => {
         try {
-            fetch(`http://13.233.146.7:8084/pot/details/all/${mobileNumber}`, {
+            fetch(`http://3.109.210.47:8085/pot/details/all/${mobileNumber}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
