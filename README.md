@@ -29,6 +29,10 @@ node i
 ```sh
 npm run android
 ```
+#### Note
+```sh
+Use can use any number as OTP for the demo.
+```
 
 ### Start the backend server
 ```sh
