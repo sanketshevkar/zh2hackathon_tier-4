@@ -9,14 +9,18 @@ import PotModal from '../components/modals/PotModal';
 const Profile = ({ mobileNumber, users, setUsers }) => {
     const [pots, setPots] = useState([]);
 
+    const tempMobileNumber = mobileNumber.slice(1,13)
+    console.log(tempMobileNumber)
+
     useEffect(() => {
         try {
-            fetch(`http://3.109.210.47:8085/pot/details/all/${mobileNumber}`, {
+            fetch(`http://3.109.210.47:8085/pot/details/all/${tempMobileNumber}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 }
-            }).then(res => res.json()).then(data => setPots(data));
+            }).then(res => res.json()).then((data) => setPots(data));
+            console.log(pots)
         } catch (e) {
             console.error(e);
         }
@@ -43,9 +47,9 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                         <VStack style={{ alignItems: 'center' }}>
                             <Avatar
                                 size="2xl"
-                            source={{
-                              uri: "https://upload.wikimedia.org/wikipedia/en/9/91/Ryan_Howard_%28The_Office%29.jpg",
-                            }}
+                                source={{
+                                    uri: "https://upload.wikimedia.org/wikipedia/en/9/91/Ryan_Howard_%28The_Office%29.jpg",
+                                }}
                             >
                                 SS
                             </Avatar>
@@ -76,7 +80,7 @@ const Profile = ({ mobileNumber, users, setUsers }) => {
                 {pots.map((pot, key) => {
                     return (
                         <View key={key}>
-                            <PotCard pot={pot} users={users} setUsers={setUsers}/>
+                            <PotCard pot={pot} users={users} setUsers={setUsers} />
                         </View>
                     )
                 })}
